@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE HTML>
+
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:composite="http://java.sun.com/jsf/composite"
+        xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <head><title>(For validation only)</title></head>
+    <body>
+        <composite:interface>
+            <composite:attribute name="data" />
+        </composite:interface>
+
+        <composite:implementation>
+            <h:panelGrid columns="5" columnClasses="productImgCol,productDescriptionCol" cellpadding="0" cellspacing="0" border="0">
+                <h:column>
+                    <h:graphicImage value="/image?id=#{cc.attrs.data.id}" height="100px" width="100px" />
+                </h:column>
+                <h:column>
+                    <h:panelGrid>
+                        <h:column class="productDescriptionCol">
+                            <h:outputText value="#{cc.attrs.data.name} (SKU: #{cc.attrs.data.id})"/><br />
+                            <h:outputLabel for="description" value="#{bundle.ListProductTitle_description}: "/>
+                            <h:outputText id="description" value="#{cc.attrs.data.description}"/>
+                        </h:column>
+
+                        <h:column>
+                            <h:outputLabel for="price" value="#{bundle.ListProductTitle_price}: "/>
+                            <h:outputText id="price" value="#{cc.attrs.data.price}">
+                                <f:convertNumber currencySymbol="$" type="currency"/>
+                            </h:outputText>
+                        </h:column>
+                    </h:panelGrid>
+                </h:column>
+
+                <h:column>
+                    <h:commandButton action="#{shoppingCart.addItem(cc.attrs.data)}" value="#{bundle.AddToCart}" styleClass="btn" style="margin-top:10px;" />
+                </h:column>
+            </h:panelGrid>
+        </composite:implementation>
+
+    </body>
+
+</html>

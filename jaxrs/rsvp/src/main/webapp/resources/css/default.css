@@ -1,0 +1,64 @@
+/**
+ * Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+ *
+ * You may not modify, use, reproduce, or distribute this software except in
+ * compliance with  the terms of the License at:
+ * https://github.com/javaee/tutorial-examples/LICENSE.txt
+ */
+body {
+    background-color: #ffffff;
+    font-size: 12px;
+    font-family: Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    color: #000000;
+    margin: 10px;
+}
+
+h1 {
+    font-family: Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    border-bottom: 1px solid #AFAFAF;
+    font-size:  16px;
+    font-weight: bold;
+    margin: 0px;
+    padding: 0px;
+    color: #D20005;
+}
+
+a:link, a:visited {
+    color: #045491;
+    font-weight : bold;
+    text-decoration: none;
+}
+
+a:link:hover, a:visited:hover  {
+    color: #045491;
+    font-weight : bold;
+    text-decoration : underline;
+}
+
+table {
+    border-top:1px solid #7F7F7F;
+    border-right:1px solid #7F7F7F;
+    border-left: 1px solid #7F7F7F;
+    border-collapse:collapse;
+    margin-left:1em;
+    margin-right: auto;
+    margin-top: 1em;
+
+}
+
+td {
+    color: black;
+    border-bottom:1px solid #7F7F7F;
+    border-left:1px solid #7F7F7F;
+    padding:.3em 1em;
+
+}
+
+th {
+    color: #D20005;
+}
+
+root { 
+    display: block;
+}
+

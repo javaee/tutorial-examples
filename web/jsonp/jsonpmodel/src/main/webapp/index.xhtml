@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+  <title>JSON Object Model Example</title>
+  <h:outputStylesheet library="css" name="default.css"/>
+</h:head>
+<h:body>
+  <h1>JSON Object Model</h1>
+  <h2>Enter your information</h2>
+  <h:form>
+      <table>
+          <tr>
+              <td align="right">First Name:</td>
+              <td><h:inputText value="#{objectModelBean.firstName}"/></td>
+          </tr><tr>
+              <td align="right">Last Name:</td>
+              <td><h:inputText value="#{objectModelBean.lastName}"/></td>
+          </tr><tr>
+              <td align="right">Age:</td>
+              <td><h:inputText value="#{objectModelBean.age}"/></td>
+          </tr><tr>
+              <td align="right">Street Address:</td>
+              <td><h:inputText value="#{objectModelBean.streetAddress}"/></td>
+          </tr><tr>
+              <td align="right">City:</td>
+              <td><h:inputText value="#{objectModelBean.city}"/></td>
+          </tr><tr>
+              <td align="right">State:</td>
+              <td><h:inputText value="#{objectModelBean.state}"/></td>
+          </tr><tr>
+              <td align="right">ZIP code:</td>
+              <td><h:inputText value="#{objectModelBean.postalCode}"/></td>
+          </tr><tr>
+              <td align="right">Phone Number 1:</td>
+              <td><h:inputText value="#{objectModelBean.phoneNumber1}"/> &nbsp; 
+                  <h:selectOneMenu value="#{objectModelBean.phoneType1}">
+                      <f:selectItem itemValue="#{objectModelBean.phoneTypeHome}"
+                                    itemLabel="#{objectModelBean.phoneTypeHome}"/>
+                      <f:selectItem itemValue="#{objectModelBean.phoneTypeMobile}"
+                                    itemLabel="#{objectModelBean.phoneTypeMobile}"/>
+                  </h:selectOneMenu></td>
+          </tr><tr>
+              <td align="right">Phone Number 2:</td>
+              <td><h:inputText value="#{objectModelBean.phoneNumber2}"/> &nbsp; 
+                  <h:selectOneMenu value="#{objectModelBean.phoneType2}">
+                      <f:selectItem itemValue="#{objectModelBean.phoneTypeHome}"
+                                    itemLabel="#{objectModelBean.phoneTypeHome}"/>
+                      <f:selectItem itemValue="#{objectModelBean.phoneTypeMobile}"
+                                    itemLabel="#{objectModelBean.phoneTypeMobile}"/>
+                  </h:selectOneMenu></td>
+          </tr>
+      </table>
+      <p><h:commandButton value="Create a JSON Object" action="#{objectModelBean.buildJson()}"/></p>
+  </h:form>
+</h:body>
+</html>

@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>The webserverlog Example Application</title>
+        <h:outputStylesheet library="css" name="default.css"/>
+    </h:head>
+    <body>
+        <h1>The webserverlog Example Application</h1>
+        <h2>Job Submitted</h2>
+        <p>Current Status of the Job: <b>#{jsfBean.jobStatus}</b></p>
+        <p>#{jsfBean.showResults()}</p>
+        <h:form>
+            <h:commandButton value="Check Status" 
+                             action="jobstarted"
+                             rendered="#{jsfBean.completed==false}" />
+        </h:form>
+    </body>
+</html>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:util="http://xmlns.jcp.org/jsf/composite/util">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditCustomerTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditCustomerLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{customerController.selected.id}" readonly="true" />
+                    <h:outputLabel value="#{bundle.EditCustomerLabel_firstname}" for="firstname" />
+                    <h:inputText id="firstname" value="#{customerController.selected.firstname}" title="#{bundle.EditCustomerTitle_firstname}" required="true" requiredMessage="#{bundle.EditCustomerRequiredMessage_firstname}"/>
+                    <h:outputLabel value="#{bundle.EditCustomerLabel_lastname}" for="lastname" />
+                    <h:inputText id="lastname" value="#{customerController.selected.lastname}" title="#{bundle.EditCustomerTitle_lastname}" required="true" requiredMessage="#{bundle.EditCustomerRequiredMessage_lastname}"/>
+                    <h:outputLabel value="#{bundle.EditCustomerLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{customerController.selected.email}" title="#{bundle.EditCustomerTitle_email}" required="true" requiredMessage="#{bundle.EditCustomerRequiredMessage_email}"/>
+                    <h:outputLabel value="#{bundle.EditCustomerLabel_password}" for="password" />
+                    <h:inputSecret id="password" value="#{customerController.selected.password}" title="#{bundle.EditCustomerTitle_password}" required="true" requiredMessage="#{bundle.EditCustomerRequiredMessage_password}" />
+                    <h:outputLabel value="#{bundle.EditCustomerLabel_address}" for="address" />
+                    <h:inputText id="address" value="#{customerController.selected.address}" title="#{bundle.EditCustomerTitle_address}" required="true" requiredMessage="#{bundle.EditCustomerRequiredMessage_address}"/>
+                    <h:outputLabel value="#{bundle.EditCustomerLabel_city}" for="city" />
+                    <h:inputText id="city" value="#{customerController.selected.city}" title="#{bundle.EditCustomerTitle_city}" required="true" requiredMessage="#{bundle.EditCustomerRequiredMessage_city}"/>
+                </h:panelGrid>
+                
+                <util:commandButtons bundleEntity="EditCustomer" controller="#{customerController}" type="edit" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

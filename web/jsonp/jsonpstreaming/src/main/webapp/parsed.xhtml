@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+  <title>JSON Streaming API</title>
+  <h:outputStylesheet library="css" name="default.css"/>
+</h:head>
+<h:body>
+  <h1>JSON Streaming</h1>
+  <h2>JSON Parser Event List</h2>
+  <p>Parsed data from file #{streamingBean.fileName}:</p>
+  <h:dataTable var="_row" value="#{streamingBean.rowList}" border="1">
+      <h:column>
+          <f:facet name="header"><h:outputText value="Event Number"/></f:facet>
+          <h:outputText value="#{_row.number}"/>
+      </h:column>
+      <h:column>
+          <f:facet name="header"><h:outputText value="Event Type"/></f:facet>
+          <h:outputText value="#{_row.type}"/>
+      </h:column>
+      <h:column>
+          <f:facet name="header"><h:outputText value="Details"/></f:facet>
+          <h:outputText value="#{_row.details}"/>
+      </h:column>
+  </h:dataTable>
+</h:body>
+</html>

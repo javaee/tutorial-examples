@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:dt="http://java.sun.com/jsf/composite/components"
+                template="./../adminTemplate.xhtml">
+
+    <ui:define name="content">
+        <dt:changeStudent action="/admin/student/editStudent" />
+        <h:form>
+            <h:panelGrid id="editStudentPanel" 
+                         summary="#{bundle['student.edit.form.title']} #{adminManager.currentStudent.name}"
+                         columns="3">
+                <f:facet name="header">
+                    <h:outputText value="#{bundle['student.edit.form.title']} #{adminManager.currentStudent.name}" />
+                </f:facet>
+                <h:outputLabel for="firstName" value="#{bundle['person.firstName']}:" />
+                <h:inputText id="firstName" required="true" 
+                             requiredMessage="#{bundle['required.firstname']}"
+                             value="#{adminManager.currentStudent.firstName}" />
+                <h:message for="firstName" style="color: #D20005"/>
+                <h:outputLabel for="middleName" value="#{bundle['person.middleName']}:" />
+                <h:inputText id="middleName" value="#{adminManager.currentStudent.middleName}" />
+                <h:message for="middleName" style="color: #D20005"/>
+                <h:outputLabel for="lastName" value="#{bundle['person.lastName']}:" />
+                <h:inputText id="lastName" required="true" 
+                             requiredMessage="#{bundle['required.lastname']}"
+                             value="#{adminManager.currentStudent.lastName}" />
+                <h:message for="lastName" style="color: #D20005"/>
+                <h:outputLabel for="nickName" value="#{bundle['person.nickName']}:" />
+                <h:inputText id="nickName" value="#{adminManager.currentStudent.nickname}" />
+                <h:message for="nickName" style="color: #D20005"/>
+                <h:outputLabel for="suffix" value="#{bundle['person.suffix']}:" />
+                <h:inputText id="suffix" value="#{adminManager.currentStudent.suffix}" />
+                <h:message for="suffix" style="color: #D20005"/>
+                <h:outputLabel for="school" value="#{bundle['student.school']}:" />
+                <h:inputText id="school" value="#{adminManager.currentStudent.school}" />
+                <h:message for="school" style="color: #D20005" />
+                <h:outputLabel for="grade" value="#{bundle['student.grade']}:" />
+                <h:selectOneMenu id="grade" value="#{adminManager.currentStudent.grade}">
+                    <f:selectItem itemLabel="-Select One-" itemValue="None selected" />
+                    <f:selectItems value="#{adminManager.allGrades}" />
+                </h:selectOneMenu>
+                <h:message for="grade" style="color: #D20005" />
+                <h:outputLabel for="email" value="#{bundle['person.email']}:" />
+                <h:inputText id="email" value="#{adminManager.currentStudent.email}">
+                    <f:passThroughAttribute name="type" value="email" />
+                </h:inputText>
+                <h:message for="email" style="color: #D20005"/>
+                <h:outputLabel for="homePhone" value="#{bundle['person.homePhone']}:" />
+                <h:inputText id="homePhone" 
+                             value="#{adminManager.currentStudent.homePhone}"
+                             validatorMessage="#{bundle['invalid.phonenumber']}">
+                    <f:validateRegex pattern="\(\d{3}\) \d{3}-\d{4}"/>
+                </h:inputText>
+                <h:message for="homePhone" style="color: #D20005"/>
+                <h:outputLabel for="mobilePhone" value="#{bundle['person.mobilePhone']}:" />
+                <h:inputText id="mobilePhone" value="#{adminManager.currentStudent.mobilePhone}"
+                             validatorMessage="#{bundle['invalid.phonenumber']}">
+                    <f:validateRegex pattern="\(\d{3}\) \d{3}-\d{4}"/>
+                </h:inputText>
+                <h:message for="mobilePhone" style="color: #D20005"/>
+                <f:facet name="footer">
+                    <h:panelGroup style="display:block; text-align:center">
+                        <h:commandButton id="submit"
+                                         action="#{adminBean.editStudent(adminManager.currentStudent)}"
+                                         value="#{bundle['action.submit']}" />
+                        <h:commandButton id="cancel"
+                                         action="/admin/index"
+                                         immediate="true"
+                                         value="#{bundle['action.cancel']}" />
+                    </h:panelGroup>
+                </f:facet>
+            </h:panelGrid>
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>
+

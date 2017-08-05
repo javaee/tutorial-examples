@@ -1,0 +1,83 @@
+/**
+ * Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+ *
+ * You may not modify, use, reproduce, or distribute this software except in
+ * compliance with  the terms of the License at:
+ * https://github.com/javaee/tutorial-examples/LICENSE.txt
+ */
+#top {
+    position: relative;
+    background-color: white;
+    color: #D20005;
+    padding: 5px;
+    margin: 0px 0px 10px 0px;
+}
+
+#bottom {
+    position: relative;
+    background-color: #e5e5e5;
+    padding: 5px;
+    margin: 10px 0px 0px 0px;
+}
+
+#left {
+    float: left;
+    background-color: white;
+    color: #6f6f6f;
+    padding: 5px;
+    width: 175px;
+    border-bottom: 1px solid #6f6f6f;
+    border-top: 1px solid #6f6f6f;
+    border-right: 1px solid #6f6f6f;
+}
+
+#right {
+    float: right;
+    background-color: #6f6f6f;
+    color: white;
+    padding: 5px;
+    width: 150px;
+}
+
+.center_content {
+    position: relative;
+    background-color: white;
+    padding: 5px;
+}
+
+.left_content {
+    background-color: white;
+    padding: 5px;
+    margin-left: 190px;
+    border-bottom: 1px solid #6f6f6f;
+}
+
+.right_content {
+    background-color: white;
+    padding: 5px;
+    margin: 0px 170px 0px 170px;
+}
+
+#top a:link, #top a:visited {
+  color: black;
+  font-weight : bold;
+  text-decoration: none;
+}
+
+#top a:link:hover, #top a:visited:hover  {
+  color: #D20005;
+  font-weight : bold;
+  text-decoration : underline;
+}
+
+#left a:link, #left a:visited {
+    color: #6f6f6f;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#left a:link:hover, #left a:visited:hover {
+    color: #D20005;
+    font-weight: bold;
+    text-decoration: underline;
+}

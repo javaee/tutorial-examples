@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>The Phone Billing Example Application</title>
+        <h:outputStylesheet library="css" name="default.css"/>
+    </h:head>
+    <body>
+        <h1>The Phone Billing Example Application</h1>
+        <h2>Job Submitted</h2>
+        <p>Current Status of the Job: <b>#{jsfBean.jobStatus}</b></p>
+        <h:dataTable var="_row" value="#{jsfBean.rowList}" 
+                     border="1" rendered="#{jsfBean.completed}">
+            <h:column>
+                <pre>
+            <!-- embedded table, see JsfBean.java -->
+            <h:dataTable var="_row2" value="#{_row}" border="0">
+                <h:column>
+                    <h:outputText value="#{_row2}"></h:outputText>
+                </h:column>
+            </h:dataTable>
+                </pre>
+            </h:column>
+        </h:dataTable>
+        <!-- Render the check status button if the job has not finished -->
+        <h:form>
+            <h:commandButton value="Check Status" 
+                             rendered="#{jsfBean.completed==false}"
+                             action="jobstarted" />
+        </h:form>
+    </body>
+</html>

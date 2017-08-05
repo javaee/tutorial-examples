@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:form>
+        <h:link outcome="index" value="${bundle['nav.main']}" />
+        <br />
+        <h:link outcome="statusEntries" value="${bundle['nav.status']}" />
+        <br />
+        <h:link outcome="current" value="${bundle['nav.current_session']}" />
+        <br />
+        <h:link outcome="park" value="${bundle['nav.park']}" />
+        <br />
+        <h:link outcome="admin" value="${bundle['admin.nav.main']}"  />
+    </h:form>
+</html>
+

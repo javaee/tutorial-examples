@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateProductTitle}"></h:outputText>
+        </ui:define>
+          <ui:define name="body">
+            <h:form >
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewProductLabel_id}"/>
+                    <h:outputText value="#{productController.selected.id}" title="#{bundle.ViewProductTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewProductLabel_name}"/>
+                    <h:outputText value="#{productController.selected.name}" title="#{bundle.ViewProductTitle_name}"/>
+                    <h:outputText value="#{bundle.ViewProductLabel_price}"/>
+                    <h:outputText value="#{productController.selected.price}" title="#{bundle.ViewProductTitle_price}"/>
+                    <h:outputText value="#{bundle.ViewProductLabel_description}"/>
+                    <h:outputText value="#{productController.selected.description}" title="#{bundle.ViewProductTitle_description}"/>
+                    <h:outputText value="#{bundle.ViewProductLabel_img}"/>
+                    
+                    <h:graphicImage value="/image?id=#{productController.selected.id}" />
+                    <h:outputText value="#{bundle.ViewProductLabel_category}"/>
+                    <h:outputText value="#{productController.selected.category}" title="#{bundle.ViewProductTitle_category}"/>
+                </h:panelGrid>
+                <ul class="commandButtons">
+                    <h:commandButton actionListener="#{productController.done}" action="/admin/index.xhtml" value="Done!" />
+                </ul>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

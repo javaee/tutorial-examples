@@ -1,0 +1,63 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.glassfish.javaeetutorial</groupId>
+        <artifactId>dukes-forest</artifactId>
+        <version>7.0.6-SNAPSHOT</version>
+    </parent>
+
+    <groupId>org.glassfish.javaeetutorial</groupId>
+    <artifactId>entities</artifactId>
+    <packaging>jar</packaging>
+
+    <name>entities</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>javax.persistence</artifactId>
+            <version>2.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>1.1.0.Final</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+    
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <executions>
+                    <execution>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <skip>false</skip>
+                    <executable>${glassfish.home}/bin/asadmin${glassfish.executables.suffix}</executable>
+                    <successCodes>
+                        <successCode>0</successCode>
+                        <successCode>1</successCode>
+                    </successCodes>
+                    <arguments>
+                        <argument>create-auth-realm</argument>
+                        <argument>--classname=com.sun.enterprise.security.auth.realm.jdbc.JDBCRealm</argument>
+                        <argument>--property=jaas-context=jdbcRealm:datasource-jndi=java\:global/ForestDataSource:user-table=forest.PERSON:user-name-column=email:password-column=password:group-table=forest.GROUPS:group-table-user-name-column=name:group-name-column=name:assign-groups=USERS,ADMINS:digest-algorithm=MD5</argument>
+                        <argument>jdbcRealm</argument>
+                    </arguments>
+                </configuration>
+            </plugin> 
+        </plugins>         
+    </build>
+</project>

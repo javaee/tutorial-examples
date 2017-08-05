@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Duke's RSVP</title>
+        <h:outputStylesheet name="default.css" library="css" />
+    </h:head>
+    <h:body>
+        <h1><h:outputText value="#{eventManager.currentResponse.person.firstName} #{eventManager.currentResponse.person.lastName}'s" /> current response for <h:outputText value="#{eventManager.currentEvent.name}" /></h1>
+        <h:form>
+            <p>Manage your response here.</p>
+            <h:selectOneMenu id="changeResponseMenu"
+                             value="#{eventManager.currentResponse.response}"
+                             title="Your response">
+                <f:selectItems value="#{statusManager.statusValues}"
+                               var="status"
+                               itemValue="#{status}"
+                               itemLabel="#{status.label}" />
+            </h:selectOneMenu>
+            <h:commandLink action="#{statusManager.changeStatus(eventManager.currentResponse.response, eventManager.currentResponse.person, eventManager.currentEvent)}"
+                           value="Update your status" />
+        </h:form>
+        <br />
+        <h:link outcome="index"
+                value="Back to the main page." />
+    </h:body>
+</html>
+

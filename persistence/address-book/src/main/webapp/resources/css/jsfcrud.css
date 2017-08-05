@@ -1,0 +1,118 @@
+/**
+ * Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+ *
+ * You may not modify, use, reproduce, or distribute this software except in
+ * compliance with  the terms of the License at:
+ * https://github.com/javaee/tutorial-examples/LICENSE.txt
+ */
+root { 
+    display: block;
+}
+
+body {
+    font-family: Univers, "Univers 55", "Lucida Grande CE", lucida, Helvetica, san-serif;
+    color: black;
+    background-color: white;
+    font-size: small;
+}
+
+h1, h2, h3, h4 {
+    border-bottom: 1px solid #7F7F7F;
+    font-weight: bold;
+    margin: 0px;
+    padding: 0px;
+    color: #d20005;
+}
+
+h1 {
+    font-size:  16px;
+}
+
+h2 {
+    font-size:  14px;
+}
+
+h3 {
+    font-size: 12px;
+}
+
+h4 {
+    font-size: 10px;
+}
+
+a:link, a:visited  {
+    color: black;
+}
+
+a:link:hover, a:visited:hover {
+    text-decoration: underline;
+    color: #d20005;
+}
+
+table {
+    empty-cells: show;
+}
+
+form.jsfcrud_list_form th, td th {
+    font-size: x-small;
+    color: #d20005;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-color:  #cccccc;
+    border-bottom-color: #cccccc;
+    border-left-color:  #999999;
+    border-right-color: #999999;
+    letter-spacing: 3px;
+    text-align: left;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 6px;
+    padding-right: 6px;
+    background-color: white;
+}
+
+td {
+    vertical-align: top;
+    padding-bottom: 8px;
+    font-size: small;
+}
+
+form.jsfcrud_list_form td, td td {
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-color: #cccccc;
+    border-bottom-color: #cccccc;
+    border-left-color: #999999;
+    border-right-color: #999999;
+    vertical-align: baseline;
+    padding-bottom: 0px;
+}
+
+tr.jsfcrud_odd_row {
+    background-color: #e5e5e5;
+    color: black;
+}
+
+
+tr.jsfcrud_even_row {
+    background-color: #cccccc;
+    color: black;
+}
+
+#busyImage {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}

@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet library="css" name="stylesheet.css"/>
+        <title>Checkout Flow Page Three</title>
+    </h:head>
+    <h:body style="background-color: lightblue">
+        <h:form prependId="false">
+            <h:graphicImage url="#{resource['images:duke.books.gif']}" 
+                            alt="Duke carrying books"/>
+            <h2>Checkout Flow Page Three</h2>
+            <h3>Billing Information</h3>
+            <p>Enter your credit card details here. Required fields are
+                marked with an asterisk (*).</p>
+            <h:panelGrid columns="3" role="presentation">
+                <h:outputLabel value="Name on credit card: * " for="ccname"/>
+                <h:inputText id="ccname" value="#{checkoutFlowBean.ccName}" 
+                             required="true"/>
+                <h:message for="ccname" style="color: #D20005"/>
+
+                <h:outputLabel value="Card number: * " for="ccnum"/>
+                <h:inputText id="ccnum" value="#{checkoutFlowBean.ccNum}"
+                             required="true">
+                    <f:validateRegex 
+                        pattern="\d{16}|\d{4} \d{4} \d{4} \d{4}|\d{4}-\d{4}-\d{4}-\d{4}"/> 
+                </h:inputText>
+                <h:message for="ccnum" style="color: #D20005"/>
+
+                <h:outputLabel value="Expiration Date (mmyy): * " for="exp"/>
+                <h:inputText id="exp" value="#{checkoutFlowBean.ccExpDate}"
+                             maxlength="4" required="true"/>
+                <h:message for="exp" style="color: #D20005"/>
+            </h:panelGrid>
+            <p>Click Submit to submit your order.</p>
+            <p><h:commandButton value="Submit" action="checkoutFlow4"/></p>
+        </h:form>
+    </h:body>
+</html>
+

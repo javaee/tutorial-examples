@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    template="/template.xhtml"
+    xmlns:util="http://java.sun.com/jsf/composite/util"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:define name="title">
+        Error Page
+    </ui:define>
+
+    <ui:define name="body">
+        <h2 style="color:red; border:0px">Sorry for the inconvenience but an unexpected error occurred:</h2>
+
+        <h4><strong>Error Message:</strong> #{exceptionMessage}</h4>
+
+        <a href="#" onmousedown="if(document.getElementById('mydiv').style.display == 'none'){ document.getElementById('mydiv').style.display = 'block'; }else{ document.getElementById('mydiv').style.display = 'none'; }">Show more details</a>
+
+        <br />
+        <div id="mydiv" style="border:1px solid black; display:none; background-color:lightgray;">            
+            <pre>
+#{exceptionTrace}
+            </pre>
+        </div>
+
+    </ui:define> 
+
+</ui:composition>

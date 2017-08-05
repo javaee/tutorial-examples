@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewCustomerOrderTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewCustomerOrderLabel_id}"/>
+                    <h:outputText value="#{customerOrderController.selected.id}" title="#{bundle.ViewCustomerOrderTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewCustomerOrderLabel_amount}"/>
+                    <h:outputText value="#{customerOrderController.selected.amount}" title="#{bundle.ViewCustomerOrderTitle_amount}"/>
+                    <h:outputText value="#{bundle.ViewCustomerOrderLabel_dateCreated}"/>
+                    <h:outputText value="#{customerOrderController.selected.dateCreated}" title="#{bundle.ViewCustomerOrderTitle_dateCreated}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewCustomerOrderLabel_orderStatus}"/>
+                    <h:outputText value="#{customerOrderController.selected.orderStatus}" title="#{bundle.ViewCustomerOrderTitle_orderStatus}"/>
+                    <h:outputText value="#{bundle.ViewCustomerOrderLabel_customer}"/>
+                    <h:outputText value="#{customerOrderController.selected.customer}" title="#{bundle.ViewCustomerOrderTitle_customer}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{customerOrderController.destroyAndView}" value="#{bundle.ViewCustomerOrderDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewCustomerOrderEditLink}"/>
+                <br />
+                <h:commandLink action="#{customerOrderController.prepareCreate}" value="#{bundle.ViewCustomerOrderCreateLink}" />
+                <br />
+                <h:commandLink action="#{customerOrderController.prepareList}" value="#{bundle.ViewCustomerOrderShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewCustomerOrderIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

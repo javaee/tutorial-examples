@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    template="/template.xhtml"
+    xmlns:util="http://java.sun.com/jsf/composite/util">
+
+    <f:metadata>
+        <f:viewParam name="categoryId" value="#{productController.categoryId}"/>
+    </f:metadata>
+
+    <ui:define name="title">
+        <h:outputText value="#{bundle.ListProductTitle}"></h:outputText>
+    </ui:define>
+    <ui:define name="body">
+        <h:form styleClass="jsfcrud_list_form">
+            <h:outputText escape="false" value="#{bundle.ListProductEmpty}" rendered="#{productController.items.rowCount == 0}"/>
+            <h:panelGroup>
+                <h:dataTable value="#{productController.items}"  rowClasses="firstRow,secondRow" var="item" border="0" cellpadding="0" cellspacing="0" rules="all" rendered="#{productController.items.rowCount > 0}">
+                    <h:column class="productColumn">
+                        <util:productProfile data="#{item}" />
+                    </h:column>
+                </h:dataTable>
+            </h:panelGroup>
+        </h:form>
+    </ui:define>
+</ui:composition>

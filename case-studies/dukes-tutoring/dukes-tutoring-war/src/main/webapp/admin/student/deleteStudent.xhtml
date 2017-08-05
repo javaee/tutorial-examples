@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="./../adminTemplate.xhtml">
+
+    <ui:define name="content">
+        <h:form>
+
+            <h:panelGrid id="deleteStudentPanel" 
+                         columns="2"
+                         summary="#{bundle['student.delete.form.title']} #{adminManager.currentStudent.name}"
+                         rowClasses="table-row-odd,table-row-even">
+                <f:facet name="header">
+                    <h:outputText value="#{bundle['student.delete.form.title']} #{adminManager.currentStudent.name}" />
+                </f:facet>
+
+                <h:outputText value="#{bundle['person.id']}" />
+                <h:outputText value="#{bundle['student.name']}" />
+                <h:outputText value="#{adminManager.currentStudent.id}" />
+                <h:outputText value="#{adminManager.currentStudent.name}" />
+                <f:facet name="footer">
+                    <h:panelGroup style="display:block; text-align:center">
+                        <h:commandButton id="submit"
+                                         action="#{adminBean.removeStudent(adminManager.currentStudent)}"
+                                         value="#{bundle['action.confirm']}" />
+                        <h:commandButton id="cancel"
+                                         action="/admin/index"
+                                         immediate="true"
+                                         value="#{bundle['action.cancel']}" />
+                    </h:panelGroup>
+                </f:facet>
+            </h:panelGrid>
+        </h:form>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.glassfish.javaeetutorial</groupId>
+    <artifactId>trading-ear</artifactId>
+    <packaging>ear</packaging>
+    <name>trading-ear</name>
+	
+    <parent>
+        <artifactId>trading</artifactId>
+        <groupId>org.glassfish.javaeetutorial</groupId>
+        <version>7.0.6-SNAPSHOT</version>
+    </parent>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <version>${maven.ear.plugin.version}</version>
+                <configuration>
+                    <finalName>trading-ear</finalName>
+                    <defaultLibBundleDir>lib</defaultLibBundleDir>
+                    <modules>
+                        <webModule>
+                            <groupId>org.glassfish.javaeetutorial</groupId>
+                            <artifactId>trading-war</artifactId>
+                            <bundleFileName>trading-war.war</bundleFileName>
+                        </webModule>
+                        <rarModule>
+                            <groupId>org.glassfish.javaeetutorial</groupId>
+                            <artifactId>trading-rar</artifactId>
+                            <bundleFileName>trading-rar.rar</bundleFileName>
+                        </rarModule>
+                    </modules>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+  
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>trading-war</artifactId>
+            <version>${project.version}</version>
+            <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>trading-rar</artifactId>
+            <version>${project.version}</version>
+            <type>rar</type>
+        </dependency>
+    </dependencies>
+</project>

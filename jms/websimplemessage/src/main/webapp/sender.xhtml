@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <h:outputStylesheet library="css" name="default.css"/>
+        <title>Message Sender</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:graphicImage url="#{resource['images:duke.waving.gif']}" 
+                            alt="Duke waving his hand" />
+            <h2>Enter your message in the Message Text field.</h2>
+            <h:outputLabel for="messagetext" value="Message Text: "  />
+            <h:inputText id="messagetext"
+                         title="Message text"
+                         value="#{senderBean.messageText}"
+                         required="true"
+                         requiredMessage="Error: Message text is required."
+                         maxlength="128"
+                         size="32" />
+            <p></p>
+            <h:commandButton value="Send Message" 
+                             action="#{senderBean.sendMessage}" />
+            <h:commandButton value="Go to Receive Page" 
+                             action="receiver" />
+
+        </h:form>
+        <div class="messagecolor">
+            <h:messages showSummary="true" 
+                        showDetail="false"
+                        errorStyle="color: #d20005" 
+                        infoStyle="color: blue"/>
+        </div>
+    </h:body>
+</html>
+

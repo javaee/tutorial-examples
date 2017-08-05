@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./bookstoreTemplate.xhtml">
+
+    <ui:define name="top"></ui:define>
+    <ui:define name="content">
+        <h:form id="form">
+            <p>
+                <h:outputFormat value="#{bundle.CartItemCount}">
+                    <f:param value="#{cart.numberOfItems}"/>
+                </h:outputFormat>
+                &nbsp;&nbsp;
+                <h:commandLink id="clear"
+                               action="#{cart.clear}"
+                               immediate="true"
+                               rendered="#{cart.numberOfItems > 0}">
+                    <h:outputText value="#{bundle.ClearCart}"/>
+                </h:commandLink>
+
+                &nbsp;&nbsp;
+
+                <h:commandLink  id="buy"
+                                action="#{cart.buy}"
+                                immediate="true"
+                                rendered="#{cart.numberOfItems > 0}">
+                    <h:outputText value="#{bundle.Buy}"/>
+                </h:commandLink>
+
+                &nbsp;&nbsp;
+
+                <h:commandLink id="continue"
+                               action="bookcatalog"
+                               immediate="true">
+                    <h:outputText value="#{bundle.ContinueShopping}"/>
+                </h:commandLink>
+            </p>
+
+            <h:dataTable id="items"
+                         captionClass="list-caption"
+                         columnClasses="list-column-center, list-column-left,
+                         list-column-right, list-column-center"
+                         footerClass="list-footer"
+                         headerClass="list-header"
+                         rowClasses="list-row-odd, list-row-even"
+                         styleClass="list-background"
+                         summary="#{bundle.ShoppingCart}"
+                         value="#{cart.items}"
+                         border="1"
+                         var="item">
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ItemQuantity}"/>
+                    </f:facet>
+                    <h:inputText id="quantity"
+                                 size="4"
+                                 value="#{item.quantity}"
+                                 title="#{bundle.ItemQuantity}">
+                        <f:validateLongRange minimum="0"/>
+                        <f:valueChangeListener 
+                            type="javaeetutorial.dukesbookstore.listeners.QuantityChanged"/>
+                    </h:inputText>
+                </h:column> 
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ItemTitle}"/>
+                    </f:facet>
+                    <h:commandLink action="#{showcart.details}">
+                        <h:outputText value="#{item.item.title}"/>
+                    </h:commandLink>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ItemPrice}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.item.price}">
+                        <f:convertNumber currencySymbol="$" type="currency"/>
+                    </h:outputText>
+                </h:column>
+
+                <h:column>
+                    <h:commandButton id="remove"
+                                     action="#{showcart.remove}"
+                                     value="#{bundle.RemoveItem}"/>
+                </h:column>
+
+                <f:facet name="footer">
+                    <h:panelGroup>
+                        <h:outputText value="#{bundle.Subtotal}"/>
+                        <h:outputText value="#{cart.total}">
+                            <f:convertNumber currencySymbol="$" type="currency"/>
+                        </h:outputText>
+                    </h:panelGroup>
+                </f:facet>
+                <f:facet name="caption">
+                    <h:outputText value="#{bundle.Caption}"/>
+                </f:facet>
+            </h:dataTable>
+            <p>
+                <h:commandLink id="update"
+                               action="#{showcart.update}"
+                               immediate="false">
+                    <h:outputText value="#{bundle.UpdateQuantities}"/>
+                </h:commandLink>
+            </p>
+        </h:form>
+        <div class="messagecolor">
+            <h:messages showSummary="true" 
+                        showDetail="false"
+                        errorStyle="color: #d20005" 
+                        infoStyle="color: blue"/>
+        </div>
+    </ui:define>
+</ui:composition>
+

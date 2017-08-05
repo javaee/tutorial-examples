@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="title">Guess My Number</ui:define>
+        <ui:define name="head">Guess My Number</ui:define>
+        <ui:define name="content">
+                <h:form id="GuessMain">
+                    <div style="color: black; font-size: 24px;">
+                        <p>I'm thinking of a number from 
+                        <span style="color: blue">#{userNumberBean.minimum}</span> 
+                        to 
+                        <span style="color: blue">#{userNumberBean.maximum}</span>. 
+                        You have 
+                        <span style="color: blue">#{userNumberBean.remainingGuesses}</span> 
+                        guesses.</p>
+                    </div>
+                    <h:panelGrid border="1" columns="5" style="font-size: 18px;">
+                        <h:outputLabel for="inputGuess">Number:</h:outputLabel>
+                        <h:inputText id="inputGuess" 
+                                      value="#{userNumberBean.userNumber}" 
+                                      required="true" size="3" 
+ disabled="#{userNumberBean.number eq userNumberBean.userNumber or userNumberBean.remainingGuesses le 0}"
+                                      validator="#{userNumberBean.validateNumberRange}">
+                        </h:inputText>
+                        <h:commandButton id="GuessButton" value="Guess" 
+                                         action="#{userNumberBean.check}" 
+ disabled="#{userNumberBean.number eq userNumberBean.userNumber or userNumberBean.remainingGuesses le 0}"/>
+                        <h:commandButton id="RestartButton" value="Reset" 
+                                         action="#{userNumberBean.reset}" 
+                                         immediate="true" />
+                        <h:outputText id="Higher" value="Higher!" 
+ rendered="#{userNumberBean.number gt userNumberBean.userNumber and userNumberBean.userNumber ne 0}" 
+                                      style="color: #d20005"/>
+                        <h:outputText id="Lower" value="Lower!" 
+ rendered="#{userNumberBean.number lt userNumberBean.userNumber and userNumberBean.userNumber ne 0}" 
+                                      style="color: #d20005"/>
+                    </h:panelGrid>
+                    <div style="color: #d20005; font-size: 14px;">
+                        <h:messages id="messages" globalOnly="false"/>
+                    </div>
+                </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE HTML>
+<html lang="#{localeBean.language}"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:util="http://java.sun.com/jsf/composite/util"
+      xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions" 
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta charset="utf-8" />
+        <ui:insert name="header-meta" />
+
+        <title>
+            #{bundle.PageTitleShipment}
+            <ui:insert name="title" />
+        </title>
+        <h:outputStylesheet library="css" name="default.css" />
+        <h:outputScript library="js" name="util.js" />
+        
+        <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/img/logo-small.ico"/>
+    </h:head>
+
+    <h:body>
+        <!-- JSF browser check -->
+        <c:choose>
+            <c:when test="#{fn:containsIgnoreCase(request.getHeader('User-Agent'), 'MSIE 6') ||
+                            fn:containsIgnoreCase(request.getHeader('User-Agent'), 'MSIE 7') ||
+                            fn:containsIgnoreCase(request.getHeader('User-Agent'), 'MSIE 8') ||
+                            fn:containsIgnoreCase(request.getHeader('User-Agent'), 'Firefox/3.2')}">
+
+                <h:panelGrid columns="1" id="browserCheck">        
+
+                    <h2>#{bundle.BrowserNotSupported} <br /></h2>
+                    <strong>Browser Information: </strong>#{request.getHeader('User-Agent')}
+
+                    <h:graphicImage library="img" name="JavaTopiary.png" />
+                </h:panelGrid>
+            </c:when>
+            <c:otherwise>
+                <div id="topbar">
+                    <ui:insert name="topbar">
+                        <ui:include src="topbar.xhtml" />
+                    </ui:insert>
+
+                </div>
+
+                <div id="pagewidth">
+                    <!-- ############## header ############## -->
+                    <header id="header">
+                        <ui:insert name="topheader">
+                            <ui:include src="top.xhtml" />
+                        </ui:insert>
+                    </header>
+                    <div id="wrapper" class="clearfix">
+
+                        <!-- ############## CONTENT ############## -->
+                        <section id="maincol-ship">
+                            <ui:insert name="body">
+                            </ui:insert>
+                        </section>
+
+                         <div id="messagePanel">
+                            <h:outputLink value="#" rendered="#{! empty facesContext.maximumSeverity}" onclick="document.getElementById('messagePanel').style.display = 'none';" style="color:darkgreen; float: right">(x)</h:outputLink>
+                            <h:messages errorClass="errorMessage" infoClass="infoMessage" layout="list" /> 
+                        </div>
+                    </div>
+                </div>
+            </c:otherwise>
+        </c:choose>
+    </h:body>
+</html>

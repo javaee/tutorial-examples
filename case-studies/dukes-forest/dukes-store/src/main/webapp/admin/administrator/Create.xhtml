@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:util="http://java.sun.com/jsf/composite/util">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateAdministratorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateAdministratorLabel_firstname}" for="firstname" />
+                    <h:inputText id="firstname" value="#{administratorController.selected.firstname}" title="#{bundle.CreateAdministratorTitle_firstname}" required="true" requiredMessage="#{bundle.CreateAdministratorRequiredMessage_firstname}"/>
+                    <h:outputLabel value="#{bundle.CreateAdministratorLabel_lastname}" for="lastname" />
+                    <h:inputText id="lastname" value="#{administratorController.selected.lastname}" title="#{bundle.CreateAdministratorTitle_lastname}" required="true" requiredMessage="#{bundle.CreateAdministratorRequiredMessage_lastname}"/>
+                    <h:outputLabel value="#{bundle.CreateAdministratorLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{administratorController.selected.email}" title="#{bundle.CreateAdministratorTitle_email}" required="true" requiredMessage="#{bundle.CreateAdministratorRequiredMessage_email}"/>
+                    <h:outputLabel value="#{bundle.CreateAdministratorLabel_address}" for="address" />
+                    <h:inputText id="address" value="#{administratorController.selected.address}" title="#{bundle.CreateAdministratorTitle_address}" required="true" requiredMessage="#{bundle.CreateAdministratorRequiredMessage_address}"/>
+                    <h:outputLabel value="#{bundle.CreateAdministratorLabel_city}" for="city" />
+                    <h:inputText id="city" value="#{administratorController.selected.city}" title="#{bundle.CreateAdministratorTitle_city}" required="true" requiredMessage="#{bundle.CreateAdministratorRequiredMessage_city}"/>
+                    <h:outputLabel value="#{bundle.CreateAdministratorLabel_password}" for="password" />
+                    <h:inputSecret id="password" value="#{administratorController.selected.password}" title="#{bundle.CreateAdministratorTitle_password}" required="true" requiredMessage="#{bundle.CreateAdministratorRequiredMessage_password}"/>
+                </h:panelGrid>
+                
+                <util:commandButtons bundleEntity="CreateAdministrator" controller="#{administratorController}" type="create" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:form rendered="#{userController.logged == false}">
+
+        <h:outputLabel for="username" value="#{bundle.Topbar_User_Label}" />
+        <h:inputText id="username" value="#{userController.username}" size="50" />
+        <h:outputLabel for="password" value="#{bundle.Topbar_Pass_Label}" />
+        <h:inputSecret id="password" value="#{userController.password}" size="50" />
+
+        <h:commandButton action="#{userController.login}"  value="#{bundle.Topbar_Login_Label}" /> 
+        <h:commandButton action="customer/Create.xhtml"  value="#{bundle.Topbar_Signup_Label}" />
+    </h:form>
+    <h:form rendered="#{userController.logged}">
+        <h:commandButton rendered="#{userController.admin}" action="#{userController.goAdmin}"  value="Administration" />
+        <h:commandButton action="#{userController.logout}" value="#{bundle.Topbar_Logout_Label}"/>
+        <h:outputText value=" #{bundle.Topbar_User_Label} #{userController.authenticatedUser.email}"  styleClass="user"/>
+    </h:form>
+
+</ui:composition>

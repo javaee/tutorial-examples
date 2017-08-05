@@ -1,0 +1,76 @@
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>This will not be present in rendered output</title>
+    </h:head>
+
+    <h:body>
+        <composite:interface>
+            <composite:attribute name="namePrompt" 
+                                 default="Name, word, or phrase: "/>
+            <composite:attribute name="calcButtonText" default="Calculate"/>
+            <composite:attribute name="calcAction"
+                                 method-signature="java.lang.String action()"/>
+            <composite:attribute name="primeBean"/>
+            <composite:editableValueHolder name="nameVal" targets="form:name"/>
+        </composite:interface>
+
+        <composite:implementation>
+            <h:form id="form">
+                <h:outputStylesheet library="css" name="default.css" 
+                                    target="head"/>
+                <h:panelGrid columns="2" role="presentation">
+                    <h:outputLabel for="name" 
+                                   value="#{cc.attrs.namePrompt}"/>
+                    <h:inputText id="name" 
+                                 size="45"
+                                 value="#{cc.attrs.primeBean.name}" 
+                                 required="true"/>
+                </h:panelGrid>
+
+                <p>
+                    <h:commandButton id="calcButton" 
+                                     value="#{cc.attrs.calcButtonText}"
+                                     action="#{cc.attrs.calcAction}">
+                        <f:ajax execute="name" render="outputGroup"/>
+                    </h:commandButton>
+                </p>
+
+                <h:panelGroup id="outputGroup" layout="block">
+                    <p>
+                        <h:outputText id="result" style="color:blue"
+                                      rendered="#{cc.attrs.primeBean.totalSum gt 0}"
+                                      value="Sum is #{cc.attrs.primeBean.totalSum}" />
+                    </p>
+                    <p>
+                        <h:outputText id="response" style="color:blue"
+                                      value="#{cc.attrs.primeBean.response}"
+                                      rendered="#{!facesContext.validationFailed}"/>
+                        <h:message id="errors1" 
+                                   showSummary="true" 
+                                   showDetail="false"
+                                   style="color: #d20005;
+                                   font-family: 'New Century Schoolbook', serif;
+                                   font-style: oblique;
+                                   text-decoration: overline" 
+                                   for="name"/>
+                    </p>
+                </h:panelGroup>
+            </h:form>
+        </composite:implementation>
+    </h:body>
+</html>

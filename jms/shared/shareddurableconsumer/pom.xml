@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <parent>
+        <artifactId>shared</artifactId>
+        <groupId>org.glassfish.javaeetutorial</groupId>
+        <version>7.0.6-SNAPSHOT</version>
+    </parent>
+
+    <groupId>org.glassfish.javaeetutorial</groupId>
+    <artifactId>shareddurableconsumer</artifactId>
+    <packaging>app-client</packaging>
+
+    <name>shareddurableconsumer</name>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-acr-plugin</artifactId>
+                <version>${maven.acr.plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <archive>
+                        <manifest>                            
+                            <mainClass>javaeetutorial.shareddurableconsumer.SharedDurableConsumer</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

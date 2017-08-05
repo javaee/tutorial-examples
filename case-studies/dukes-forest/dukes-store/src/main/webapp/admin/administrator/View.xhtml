@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:util="http://java.sun.com/jsf/composite/util">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewAdministratorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewAdministratorLabel_id}"/>
+                    <h:outputText value="#{administratorController.selected.id}" title="#{bundle.ViewAdministratorTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewAdministratorLabel_firstname}"/>
+                    <h:outputText value="#{administratorController.selected.firstname}" title="#{bundle.ViewAdministratorTitle_firstname}"/>
+                    <h:outputText value="#{bundle.ViewAdministratorLabel_lastname}"/>
+                    <h:outputText value="#{administratorController.selected.lastname}" title="#{bundle.ViewAdministratorTitle_lastname}"/>
+                    <h:outputText value="#{bundle.ViewAdministratorLabel_email}"/>
+                    <h:outputText value="#{administratorController.selected.email}" title="#{bundle.ViewAdministratorTitle_email}"/>
+                    <h:outputText value="#{bundle.ViewAdministratorLabel_address}"/>
+                    <h:outputText value="#{administratorController.selected.address}" title="#{bundle.ViewAdministratorTitle_address}"/>
+                    <h:outputText value="#{bundle.ViewAdministratorLabel_city}"/>
+                    <h:outputText value="#{administratorController.selected.city}" title="#{bundle.ViewAdministratorTitle_city}"/>
+                </h:panelGrid>
+                
+                <util:commandButtons bundleEntity="ViewAdministrator" controller="#{administratorController}" type="view" />
+                
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

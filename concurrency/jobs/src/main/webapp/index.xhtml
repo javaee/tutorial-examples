@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <h:outputStylesheet library="css" name="default.css"/>
+        <title>Jobs Client</title>
+        <style>
+
+
+        </style>
+        <script type="text/javascript">
+            function toggle(id) {
+                var element = document.getElementById(id);
+                if (element.style.display == 'block') {
+                    element.style.display = 'none';
+                } else {
+                    element.style.display = 'block'
+                }
+            }
+        </script>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h1>Submit High and Low Priority Jobs</h1>
+            <p>Use a token to submit High Priority jobs (submit multiple jobs concurrently).
+                <br>Use no token to submit Low Priority jobs (submit one job every 10 seconds).</br></p>
+            <p>Get a token <a href="http://localhost:8080/jobs/webapi/JobService/token" target="_blank">here</a>.</p>
+            
+            <h:panelGrid columns="2">
+
+                <h:outputLabel value="Enter a Job ID:" for="jobID"/>
+                <h:inputText id="jobID" value="#{jobClient.jobID}"/>
+
+                <h:outputLabel value="Enter a Token:" for="token"/>
+                <h:inputText id="token" value="#{jobClient.token}" size="35"/>
+
+                <h:commandButton action="#{jobClient.submit()}" value="Submit Job" />
+
+            </h:panelGrid>
+            <h:messages class="message"/>
+        </h:form>
+    </h:body>
+</html>
+

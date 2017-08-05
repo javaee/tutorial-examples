@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Main-Class: javaeetutorial.cart.client.CartClient
+Class-Path: cart-ejb.jar

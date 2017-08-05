@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Outbound Connector Test Web Application</title>
+        <h:outputStylesheet library="css" name="default.css"/>
+    </h:head>
+    <h:body>
+        <h1>Outbound Connector Test Web Application</h1>
+        <h3>Connect to the EIS</h3>
+        <p>Use this page to connect to the EIS using the <code>trading-rar</code>
+        resource adapter.</p>
+        <h:form>
+            Host: <h:inputText value="#{resourceAccessBean.host}" size="15" readonly="true"/>
+            Port: <h:inputText value="#{resourceAccessBean.port}" size="6" readonly="true"/>
+            <h:commandButton value="Connect"
+                             action="#{resourceAccessBean.connect()}"/>
+        </h:form>
+        <h:messages/>
+    </h:body>
+</html>
+

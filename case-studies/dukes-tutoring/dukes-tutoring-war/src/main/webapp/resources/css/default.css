@@ -1,0 +1,59 @@
+/**
+ * Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+ *
+ * You may not modify, use, reproduce, or distribute this software except in
+ * compliance with  the terms of the License at:
+ * https://github.com/javaee/tutorial-examples/LICENSE.txt
+ */
+body {
+    background-color: white;
+    font-size: 14px;
+    font-family: Univers, "Univers 55", "Lucida Grande CE", lucida, san-serif;
+    color: black;
+    margin: 10px;
+}
+
+h1, h2, h3, h4 {
+    font-family: Univers, "Univers 55", "Lucida Grande CE", lucida, sans-serif;
+    border-bottom: 1px solid #6f6f6f;
+    font-weight: bold;
+    margin: 0px;
+    padding: 0px;
+    color: #D20005;
+}
+
+h1 {
+    font-size:  16px;
+}
+
+h2 {
+    font-size:  14px;
+}
+
+h3 {
+    font-size: 12px;
+}
+
+h4 {
+    font-size: 10px;
+}
+
+a:link, a:visited {
+  color: black;
+  font-weight : bold;
+  text-decoration: none;
+}
+
+a:link:hover, a:visited:hover  {
+  color: #D20005;
+  font-weight : bold;
+  text-decoration : underline;
+}
+
+.table-row-odd {
+    background-color: #e5e5e5;
+}
+
+.table-row-even {
+    background-color: silver;
+}

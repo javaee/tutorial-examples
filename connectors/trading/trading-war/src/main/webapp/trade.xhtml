@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Outbound Connector Test Web Application</title>
+        <h:outputStylesheet library="css" name="default.css"/>
+    </h:head>
+    <h:body>
+        <h1>Outbound Connector Test Web Application</h1>
+        <h3>Interact with the EIS</h3>
+        <p>Use this page to interact with the EIS by submitting trades.</p>
+        <h:form>
+            Buy/Sell: 
+            <h:selectOneMenu value="#{resourceAccessBean.order.orderType}">
+                <f:selectItems value="#{resourceAccessBean.orderTypeList}"/>
+            </h:selectOneMenu>
+            N. shares: <h:inputText value="#{resourceAccessBean.order.NShares}" size="5"/>
+            <!--Ticker: <h:inputText value="#{resourceAccessBean.order.ticker}" size="5"/>-->
+            Ticker: 
+            <h:selectOneMenu value="#{resourceAccessBean.order.ticker}">
+                <f:selectItems value="#{resourceAccessBean.tickerList}"/>
+            </h:selectOneMenu>
+            Class:
+            <h:selectOneListbox value="#{resourceAccessBean.order.orderClass}">
+                <f:selectItems value="#{resourceAccessBean.orderClassList}"/>
+            </h:selectOneListbox>
+            <h:commandButton value="Submit" action="#{resourceAccessBean.submitTrade()}"/>
+            <br/><br/>
+            <h:inputTextarea value="#{resourceAccessBean.infoBox}" cols="80" rows="10" readonly="true"/>
+            <br/><br/>
+            <h:commandButton value="Disconnect" action="#{resourceAccessBean.disconnect}"/>
+        </h:form>
+    </h:body>
+</html>
+

@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<faces-config version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+    <flow-definition id="joinFlow">
+        <flow-return id="returnFromJoinFlow">
+            <from-outcome>#{joinFlowBean.returnValue}</from-outcome>
+        </flow-return>
+
+        <inbound-parameter>
+            <name>param1FromCheckoutFlow</name>
+            <value>#{flowScope.param1Value}</value>
+        </inbound-parameter>
+        <inbound-parameter>
+            <name>param2FromCheckoutFlow</name>
+            <value>#{flowScope.param2Value}</value>
+        </inbound-parameter>
+        
+        <flow-call id="callcheckoutFlow">
+            <flow-reference>
+                <flow-id>checkoutFlow</flow-id>
+            </flow-reference>
+            <outbound-parameter>
+                <name>param1FromJoinFlow</name>
+                <value>param1 joinFlow value</value>
+            </outbound-parameter>
+            <outbound-parameter>
+                <name>param2FromJoinFlow</name>
+                <value>param2 joinFlow value</value>
+            </outbound-parameter>
+        </flow-call>
+    </flow-definition>
+</faces-config>

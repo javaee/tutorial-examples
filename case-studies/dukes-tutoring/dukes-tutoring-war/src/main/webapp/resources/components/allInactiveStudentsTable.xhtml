@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:cc="http://java.sun.com/jsf/composite">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <h2><h:outputText value="#{bundle['student.inactive.table.title']}" /></h2>
+        <h:form>
+            <h:dataTable value="#{adminBean.allInactiveStudents}"
+                         var="student"
+                         summary="#{bundle['student.inactive.table.title']}"
+                         rowClasses="table-row-odd,table-row-even">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle['person.id']}" />
+                    </f:facet>
+                    <h:outputText value="#{student.id}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle['student.name']}" />
+                    </f:facet>
+                    <h:outputText value="#{student.name}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle['table.header.actions']}" />
+                    </f:facet>
+                    <h:panelGroup>
+                        <h:commandButton action="#{adminBean.activateStudent(student)}"
+                                         value="#{bundle['action.activate']}" />
+                    </h:panelGroup>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </cc:implementation>
+</html>

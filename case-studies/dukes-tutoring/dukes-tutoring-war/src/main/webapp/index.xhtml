@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:dt="http://java.sun.com/jsf/composite/components"
+                template="./template.xhtml">
+
+    <ui:define name="htmlHead">
+        <title>#{bundle['dukes.tutoring.name']}</title>
+        <script type="text/javascript">
+            var wsocket;
+            function connect() {
+                //alert('Connecting');
+                wsocket = new WebSocket("ws://localhost:8080/dukes-tutoring-war/status");
+                wsocket.onmessage = onMessage;
+                //alert('Connected');
+            }
+            function onMessage(evt) {
+                //alert(evt.data);
+                document.getElementById('ast:allstudentsform:refreshbutton').click(); 
+            }
+            window.addEventListener("load", connect, false);
+        </script>
+    </ui:define>
+
+    <ui:define name="title">
+        <h1>#{bundle['dukes.tutoring.name']}</h1>
+    </ui:define>
+
+    <ui:define name="body">
+        <dt:allStudentsTable id="ast"/>
+    </ui:define>
+
+</ui:composition>
+

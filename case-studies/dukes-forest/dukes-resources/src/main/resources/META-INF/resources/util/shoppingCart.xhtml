@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE HTML>
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:composite="http://java.sun.com/jsf/composite"
+        xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <head><title>(For validation only)</title></head>
+    <body>
+        <composite:interface>
+
+        </composite:interface>
+
+        <composite:implementation>
+            <div id="shoppingCart">
+                <h:panelGrid rendered="#{shoppingCart.total > 0}"  cellpadding="0" cellspacing="0">
+
+                    <h:panelGrid columns="2">
+                        <img src="#{resource['img:full_shopping_cart.png']}" alt="#{bundle.Cart_Title}" width="40"/>
+                        <h:outputText value=" #{bundle.Cart_Title}" class="subTitle"  style="float:left" />
+                    </h:panelGrid>       
+
+                    <h:dataTable id="shoppingCart" value="#{shoppingCart.cartItems}" var="item" border="0" cellpadding="2" cellspacing="0">
+
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.Cart_Item}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.name}"/>
+                        </h:column>
+
+                        <h:column>  
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.Cart_Price}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.price}">
+                                <f:convertNumber currencySymbol="$" type="currency"/> 
+                            </h:outputText>
+
+                        </h:column>
+
+                        <f:facet name="footer">
+                            <br />
+                            <h:outputText style="font-weight: bold" value="#{bundle.Cart_Total} "/>
+                            <h:outputText value="#{shoppingCart.total}">
+                                <f:convertNumber currencySymbol="$" type="currency"/>
+                            </h:outputText> 
+                        </f:facet>                           
+                    </h:dataTable>
+
+                    <br />
+                    <h:panelGrid columns="2">
+                        <h:commandButton value="#{bundle.Cart_Clear}" action="#{shoppingCart.clear}" />
+                        <h:commandButton value="#{bundle.Cart_Checkout}" action="#{shoppingCart.checkout}"/>
+                    </h:panelGrid>
+
+                </h:panelGrid>
+
+            </div>
+        </composite:implementation>
+
+    </body>
+
+</html>

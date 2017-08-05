@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:bookstore="http://dukesbookstore"
+                template="./bookstoreTemplate.xhtml">
+
+    <ui:define name="top"></ui:define> 
+    <ui:define name="content">
+
+        <h:form>
+            <h:panelGrid columns="1"
+                         title="#{bundle.ChooseBook}" >
+                <h:outputText style="font-weight:bold" 
+                              value="#{bundle.ChooseBook}" />
+                <h:graphicImage id="mapImage" 
+                                name="book_all.jpg"
+                                library="images"
+                                alt="#{bundle.ChooseBook}"
+                                usemap="#bookMap" />
+                <bookstore:map id="bookMap" 
+                               current="map1" 
+                               immediate="true"
+                               action="bookstore">
+                    <f:actionListener 
+                        type="javaeetutorial.dukesbookstore.listeners.MapBookChangeListener" />
+                    <bookstore:area id="map1" value="#{Book201}" 
+                                    onmouseover="resources/images/book_201.jpg" 
+                                    onmouseout="resources/images/book_all.jpg" 
+                                    targetImage="mapImage"/>
+                    <bookstore:area id="map2" value="#{Book202}" 
+                                    onmouseover="resources/images/book_202.jpg"
+                                    onmouseout="resources/images/book_all.jpg" 
+                                    targetImage="mapImage"/>
+                    <bookstore:area id="map3" value="#{Book203}" 
+                                    onmouseover="resources/images/book_203.jpg" 
+                                    onmouseout="resources/images/book_all.jpg" 
+                                    targetImage="mapImage"/>
+                    <bookstore:area id="map4" value="#{Book205}" 
+                                    onmouseover="resources/images/book_205.jpg" 
+                                    onmouseout="resources/images/book_all.jpg" 
+                                    targetImage="mapImage"/>
+                    <bookstore:area id="map5" value="#{Book206}" 
+                                    onmouseover="resources/images/book_206.jpg" 
+                                    onmouseout="resources/images/book_all.jpg" 
+                                    targetImage="mapImage"/>
+                    <bookstore:area id="map6" value="#{Book207}" 
+                                    onmouseover="resources/images/book_207.jpg" 
+                                    onmouseout="resources/images/book_all.jpg" 
+                                    targetImage="mapImage"/>
+                </bookstore:map>
+            </h:panelGrid>
+        </h:form>
+        <h:form>
+            <table id="links" columns="3" width="800" role="presentation">
+                <tr>
+                    <td>
+                        <h:commandLink id="Duke" action="bookstore">
+                            <f:actionListener 
+                                type="javaeetutorial.dukesbookstore.listeners.LinkBookChangeListener" />
+                            <h:outputText value="#{bundle.Book201}"/>
+                        </h:commandLink>
+                    </td>
+                    <td>
+                        <h:commandLink id="Jeeves" action="bookstore">
+                            <f:actionListener 
+                                type="javaeetutorial.dukesbookstore.listeners.LinkBookChangeListener" />
+                            <h:outputText value="#{bundle.Book202}"/>
+                        </h:commandLink>
+                    </td>
+                    <td>
+                        <h:commandLink id="Masterson" action="bookstore">
+                            <f:actionListener 
+                                type="javaeetutorial.dukesbookstore.listeners.LinkBookChangeListener" />
+                            <h:outputText value="#{bundle.Book203}"/>
+                        </h:commandLink>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h:commandLink id="Novation" action="bookstore">
+                            <f:actionListener 
+                                type="javaeetutorial.dukesbookstore.listeners.LinkBookChangeListener" />
+                            <h:outputText value="#{bundle.Book205}"/>
+                        </h:commandLink>
+                    </td>
+                    <td>
+                        <h:commandLink id="Thrilled" action="bookstore">
+                            <f:actionListener 
+                                type="javaeetutorial.dukesbookstore.listeners.LinkBookChangeListener" />
+                            <h:outputText value="#{bundle.Book206}"/>
+                        </h:commandLink>
+                    </td>
+                    <td>
+                        <h:commandLink id="Coding" action="bookstore">
+                            <f:actionListener 
+                                type="javaeetutorial.dukesbookstore.listeners.LinkBookChangeListener" />
+                            <h:outputText value="#{bundle.Book207}"/>
+                        </h:commandLink>
+                    </td>
+                </tr>
+            </table>
+        </h:form>
+    </ui:define>
+</ui:composition>

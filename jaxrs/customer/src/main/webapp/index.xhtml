@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Java EE 7 Tutorial: JAX-RS Customer example</title>
+    </h:head>
+    <h:body>
+        <h:form id="customerForm">
+            <h:panelGrid id="customerGrid" columns="3">
+                <h:outputLabel for="customerFirstNameInput"
+                               value="First name: " />
+                <h:inputText id="customerFirstNameInput"
+                             value="#{customerManager.customer.firstname}" />
+                <h:message for="customerFirstNameInput" />
+                
+                <h:outputLabel for="customerLastNameInput"
+                               value="Last name: " />
+                <h:inputText id="customerLastNameInput"
+                             value="#{customerManager.customer.lastname}" />
+                <h:message for="customerLastNameInput" />
+                
+                <h:outputLabel for="customerEmailInput"
+                               value="Email: " />
+                <h:inputText id="customerEmailInput"
+                             value="#{customerManager.customer.email}" />
+                <h:message for="customerEmailInput" />
+                
+                <h:outputLabel for="customerPhoneInput"
+                               value="Phone Number: " />
+                <h:inputText id="customerPhoneInput"
+                             value="#{customerManager.customer.phone}" />
+                <h:message for="customerPhoneInput" />
+                
+                <h:outputLabel for="addressStreetInput"
+                               value="Street: " />
+                <h:inputText id="addressStreetInput"
+                             value="#{customerManager.customer.address.street}" />
+                <h:message for="addressStreetInput" />
+                
+                <h:outputLabel for="addressCityInput"
+                               value="City: " />
+                <h:inputText id="addressCityInput"
+                             value="#{customerManager.customer.address.city}" />
+                <h:message for="addressCityInput" />
+                
+                <h:outputLabel for="addressStateInput"
+                               value="State: " />
+                <h:inputText id="addressStateInput"
+                             value="#{customerManager.customer.address.province}" />
+                <h:message for="addressStateInput" />
+                
+                <h:outputLabel for="addressZipInput"
+                               value="Zip: " />
+                <h:inputText id="addressZipInput"
+                             value="#{customerManager.customer.address.zip}" />
+                <h:message for="addressZipInput" />
+                
+                <h:outputLabel for="addressCountryInput"
+                               value="Country: " />
+                <h:inputText id="addressCountryInput"
+                             value="#{customerManager.customer.address.country}" />
+                <h:message for="addressCountryInput" />
+                
+                <f:facet name="footer">
+                    <h:panelGroup>
+                        <h:commandButton id="createCustomerButton" 
+                                         action="#{customerBean.createCustomer(customerManager.customer)}"
+                                         value="Create Customer" />
+                        <h:commandButton id="cancelButton"
+                                         immediate="true"
+                                         action="index"
+                                         value="Cancel" />
+                    </h:panelGroup>
+                </f:facet>
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>
+

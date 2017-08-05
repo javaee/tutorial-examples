@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="7"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/application_7.xsd">
+             
+    <description>trading-ear</description>
+    <display-name>trading-ear</display-name>
+    <module>
+        <web>
+            <web-uri>trading-war.war</web-uri>
+            <context-root>/trading</context-root>
+        </web>
+    </module>
+    <module>
+        <connector>trading-rar.rar</connector>
+    </module>
+    <library-directory>lib</library-directory>
+</application>

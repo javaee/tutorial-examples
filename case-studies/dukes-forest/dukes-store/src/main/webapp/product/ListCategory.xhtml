@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    template="/template.xhtml"
+    xmlns:util="http://java.sun.com/jsf/composite/util">
+
+    <ui:define name="title">
+        <h:outputText value="#{bundle.ListCategoryTitle}"></h:outputText>
+    </ui:define>
+    <ui:define name="body">
+        <h:form id="categoryList">
+            <h:outputText escape="false" value="#{bundle.ListCategoryEmpty}" rendered="#{categoryController.items.rowCount == 0}"/>
+            <h:panelGroup rendered="#{categoryController.items.rowCount > 0}">                
+                <h:dataTable value="#{categoryController.items}" var="item" >
+                    <h:column>                        
+                        <h:graphicImage library="img" value="/img/tango_nature_icon.png" />
+                        <h:commandLink action="#{productController.prepareList}" value="#{item.name}">
+                            <f:setPropertyActionListener target="#{productController.categoryId}" value="#{item.id}" />
+                        </h:commandLink>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGroup>
+        </h:form>
+    </ui:define>
+    
+</ui:composition>

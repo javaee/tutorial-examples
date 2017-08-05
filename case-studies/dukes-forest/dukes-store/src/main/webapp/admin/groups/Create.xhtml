@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:util="http://java.sun.com/jsf/composite/util">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateGroupsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateGroupsLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{groupsController.selected.name}" title="#{bundle.CreateGroupsTitle_name}" required="true" requiredMessage="#{bundle.CreateGroupsRequiredMessage_name}"/>
+                    <h:outputLabel value="#{bundle.CreateGroupsLabel_description}" for="description" />
+                    <h:inputText id="description" value="#{groupsController.selected.description}" title="#{bundle.CreateGroupsTitle_description}" />
+                </h:panelGrid>
+                
+                <util:commandButtons bundleEntity="CreateGroups" controller="#{groupsController}" type="create" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

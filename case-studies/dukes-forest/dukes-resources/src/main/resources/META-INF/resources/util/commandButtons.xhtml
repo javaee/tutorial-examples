@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE HTML>
+
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:composite="http://java.sun.com/jsf/composite">
+
+    <head><title>(For validation only)</title></head>
+    <body>
+        <composite:interface>
+            <composite:attribute name="controller" />
+            <composite:attribute name="bundleEntity" />
+            <composite:attribute name="type" />
+        </composite:interface>
+
+        <composite:implementation>
+
+            <!-- CREATE -->
+            <ui:fragment rendered="#{cc.attrs.type eq 'create'}">
+                <ul class="commandButtons">
+                    <li><h:commandLink action="#{cc.attrs.controller.create}" value="#{bundle[(cc.attrs.bundleEntity).concat('SaveLink')]}" /></li>
+                    <li><h:commandLink action="#{cc.attrs.controller.prepareList}" value="#{bundle[(cc.attrs.bundleEntity).concat('ShowAllLink')]}" immediate="true"/></li>
+                    <li><h:commandLink action="/admin/index" value="Back" immediate="true"/></li>
+                </ul>
+            </ui:fragment>
+
+            <!-- VIEW -->
+            <ui:fragment rendered="#{cc.attrs.type eq 'view'}">
+                <ul class="commandButtons">
+                    <li><h:commandLink action="#{cc.attrs.controller.destroyAndView}" value="#{bundle[(cc.attrs.bundleEntity).concat('DestroyLink')]}"/></li>
+                    <li><h:commandLink action="Edit" value="#{bundle[(cc.attrs.bundleEntity).concat('EditLink')]}"/></li>
+                    <li><h:commandLink action="#{cc.attrs.controller.prepareCreate}" value="#{bundle[(cc.attrs.bundleEntity).concat('CreateLink')]}" /></li>
+                    <li><h:commandLink action="#{cc.attrs.controller.prepareList}" value="#{bundle[(cc.attrs.bundleEntity).concat('ShowAllLink')]}"/></li>
+                </ul>
+            </ui:fragment>
+
+            <!-- EDIT -->
+            <ui:fragment rendered="#{cc.attrs.type eq 'edit'}">
+                <ul class="commandButtons">
+                    <li><h:commandLink action="#{cc.attrs.controller.update}" value="#{bundle[(cc.attrs.bundleEntity).concat('SaveLink')]}"/></li>
+                    <li><h:commandLink action="View" value="#{bundle.EditAdministratorViewLink}" immediate="true"/></li>
+                    <li><h:commandLink action="#{cc.attrs.controller.prepareList}" value="#{bundle[(cc.attrs.bundleEntity).concat('ShowAllLink')]}" immediate="true"/></li>
+                </ul>
+            </ui:fragment>
+
+        </composite:implementation>
+
+    </body>
+
+</html>

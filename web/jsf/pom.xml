@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <parent>
+        <groupId>org.glassfish.javaeetutorial</groupId>
+        <artifactId>web</artifactId>
+        <version>7.0.6-SNAPSHOT</version>
+    </parent>
+   
+    <groupId>org.glassfish.javaeetutorial</groupId>
+    <artifactId>jsf</artifactId>
+    <packaging>pom</packaging>
+ 
+    <name>jsf</name>
+  
+    <modules>
+        <module>ajaxguessnumber</module>
+        <module>bookmarks</module>
+        <module>checkout-module</module>
+        <module>guessnumber-jsf</module>
+        <module>hello1</module>
+        <module>hello1-rlc</module>
+        <module>reservation</module>
+        <module>simple-flow</module>
+        <module>compositecomponentexample</module>
+  </modules>
+    
+</project>

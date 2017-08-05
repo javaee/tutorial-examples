@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+  <title>JSON Streaming API Example</title>
+  <h:outputStylesheet library="css" name="default.css"/>
+</h:head>
+<h:body>
+  <h1>JSON Streaming</h1>
+  <h2>JSON Output</h2>
+  <h:form>
+      The contents of the file #{streamingBean.fileName} are:<br/>
+      <h:inputTextarea cols="40" rows="10" 
+                       readonly="true" value="#{streamingBean.jsonTextArea}"/><br/>
+      <h:commandButton value="Parse JSON from file" action="#{streamingBean.parseJson()}"/>
+  </h:form>
+</h:body>
+</html>

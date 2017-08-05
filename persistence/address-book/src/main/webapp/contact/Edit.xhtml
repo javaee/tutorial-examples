@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditContactTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <table columns="3" role="presentation">
+                    <tr>
+                        <td><h:outputLabel value="#{bundle.EditContactLabel_firstName}" 
+                                           for="firstName" /></td>
+                        <td><h:inputText id="firstName" 
+                                         value="#{contactController.selected.firstName}" 
+                                         title="#{bundle.EditContactTitle_firstName}" /></td>
+                        <td><h:message for="firstName" 
+                                       errorStyle="color: red" 
+                                       infoStyle="color: green" /></td>
+                    </tr>
+                    <tr>
+                        <td><h:outputLabel value="#{bundle.EditContactLabel_lastName}" 
+                                           for="lastName" /></td>
+                        <td><h:inputText id="lastName" 
+                                         value="#{contactController.selected.lastName}" 
+                                         title="#{bundle.EditContactTitle_lastName}" /></td>
+                        <td><h:message for="lastName" 
+                                       errorStyle="color: red" 
+                                       infoStyle="color: green" /></td>
+                    </tr>
+                    <tr>
+                        <td><h:outputLabel value="#{bundle.EditContactLabel_birthday}" 
+                                           for="birthday" /></td>
+                        <td><h:inputText id="birthday" 
+                                         value="#{contactController.selected.birthday}" 
+                                         title="#{bundle.EditContactTitle_birthday}" >
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:inputText></td>
+                        <td><h:message for="birthday" 
+                                       errorStyle="color: red" 
+                                       infoStyle="color: green" /></td>
+                    </tr>
+                    <tr>
+                        <td><h:outputLabel value="#{bundle.EditContactLabel_homePhone}" 
+                                           for="homePhone" /></td>
+                        <td><h:inputText id="homePhone" 
+                                         value="#{contactController.selected.homePhone}" 
+                                         title="#{bundle.EditContactTitle_homePhone}" /></td>
+                        <td><h:message for="homePhone" 
+                                       errorStyle="color: red" 
+                                       infoStyle="color: green" /></td>
+                    </tr>
+                    <tr>
+                        <td><h:outputLabel value="#{bundle.EditContactLabel_mobilePhone}" 
+                                           for="mobilePhone" /></td>
+                        <td><h:inputText id="mobilePhone" 
+                                         value="#{contactController.selected.mobilePhone}" 
+                                         title="#{bundle.EditContactTitle_mobilePhone}" /></td>
+                        <td><h:message for="mobilePhone" 
+                                       errorStyle="color: red" 
+                                       infoStyle="color: green" /></td>
+                    </tr>
+                    <tr>
+                        <td><h:outputLabel value="#{bundle.EditContactLabel_email}" 
+                                           for="email" /></td>
+                        <td><h:inputText id="email" 
+                                         value="#{contactController.selected.email}" 
+                                         title="#{bundle.EditContactTitle_email}" /></td>
+                        <td><h:message for="email" 
+                                       errorStyle="color: red" 
+                                       infoStyle="color: green" /></td>
+                    </tr>
+                </table>
+                <h:commandLink action="#{contactController.update}" value="#{bundle.EditContactSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditContactViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{contactController.prepareList}" value="#{bundle.EditContactShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditContactIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

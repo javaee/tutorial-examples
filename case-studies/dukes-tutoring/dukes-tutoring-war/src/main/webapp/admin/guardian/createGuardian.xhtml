@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:dt="http://java.sun.com/jsf/composite/components"
+                template="./../adminTemplate.xhtml">
+
+    <ui:define name="content">
+        <dt:changeStudent action="/admin/guardian/createGuardian" />
+        <dt:addExistingGuardian />
+        <dt:showGuardians />
+        <h:form id="createGuardianForm">
+
+            <h:panelGrid id="createGuardianPanel" 
+                         columns="3" 
+                         summary="#{bundle['guardian.create.form.title']} #{adminManager.currentStudent.name}"
+                         >
+                <f:facet name="header">
+                    <h:outputText value="#{bundle['guardian.create.form.title']} #{adminManager.currentStudent.name}" />
+                </f:facet>
+                <h:outputLabel for="firstName" value="#{bundle['person.firstName']}:*" />
+                <h:inputText id="firstName" value="#{guardianBean.firstName}" />
+                <h:message for="firstName" style="color: #D20005"/>
+                <h:outputLabel for="middleName" value="#{bundle['person.middleName']}" />
+                <h:inputText id="middleName" value="#{guardianBean.middleName}" />
+                <h:message for="middleName" style="color: #D20005"/>
+                <h:outputLabel for="lastName" value="#{bundle['person.lastName']}:*" />
+                <h:inputText id="lastName" value="#{guardianBean.lastName}" />
+                <h:message for="lastName" style="color: #D20005"/>
+                <h:outputLabel for="nickName" value="#{bundle['person.nickName']}:" />
+                <h:inputText id="nickName" value="#{guardianBean.nickname}" />
+                <h:message for="nickName" style="color: #D20005"/>
+                <h:outputLabel for="suffix" value="#{bundle['person.suffix']}:" />
+                <h:inputText id="suffix" value="#{guardianBean.suffix}" />
+                <h:message for="suffix" style="color: #D20005"/>
+                <h:outputLabel for="email" value="#{bundle['person.email']}:" />
+                <h:inputText id="email" value="#{guardianBean.email}">
+                     <f:passThroughAttribute name="type" value="email" />
+                </h:inputText>
+                <h:message for="email" style="color: #D20005"/>
+                <h:outputLabel for="homePhone" value="#{bundle['person.homePhone']}:" />
+                <h:inputText id="homePhone" value="#{guardianBean.homePhone}" />
+                <h:message for="homePhone" style="color: #D20005"/>
+                <h:outputLabel for="mobilePhone" value="#{bundle['person.mobilePhone']}:" />
+                <h:inputText id="mobilePhone" value="#{guardianBean.mobilePhone}" />
+                <h:message for="mobilePhone" style="color: #D20005"/>
+                <f:facet name="footer">
+                    <h:panelGroup style="display:block; text-align:center">
+                        <h:commandButton id="submit"
+                                         action="#{guardianBean.submit(adminManager.currentStudent)}"
+                                         value="#{bundle['action.submit']}" />
+                        <h:commandButton id="cancel"
+                                         action="/admin/index"
+                                         immediate="true"
+                                         value="#{bundle['action.cancel']}" />
+                    </h:panelGroup>
+                </f:facet>
+            </h:panelGrid>
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCategoryTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:outputText escape="false" value="#{bundle.ListCategoryEmpty}" rendered="#{categoryController.items.rowCount == 0}"/>
+                <h:panelGroup>
+                    <ul class="commandButtons">
+                        <li><h:commandLink action="#{categoryController.previous}" value="#{bundle.Previous} #{categoryController.pagination.pageSize}" rendered="#{categoryController.pagination.hasPreviousPage}"/></li>
+                        <li><h:commandLink action="#{categoryController.next}" value="#{bundle.Next} #{categoryController.pagination.pageSize}" rendered="#{categoryController.pagination.hasNextPage}"/></li>
+                        <li><h:commandLink action="#{categoryController.prepareCreate}" value="#{bundle.ListCategoryCreateLink}"/></li>
+                    </ul>
+                    <h:dataTable value="#{categoryController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" rendered="#{categoryController.items.rowCount > 0}" >
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCategoryTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>                           
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCategoryTitle_name}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.name}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCategoryTitle_tags}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tags}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value=""/>
+                            </f:facet>
+                            <h:commandLink action="#{categoryController.prepareView}" value="#{bundle.ListCategoryViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{categoryController.prepareEdit}" value="#{bundle.ListCategoryEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{categoryController.destroy}" value="#{bundle.ListCategoryDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

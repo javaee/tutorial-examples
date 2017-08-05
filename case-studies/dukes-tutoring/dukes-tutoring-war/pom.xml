@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>dukes-tutoring</artifactId>
+        <groupId>org.glassfish.javaeetutorial</groupId>
+        <version>7.0.6-SNAPSHOT</version>
+    </parent>
+
+    <groupId>org.glassfish.javaeetutorial</groupId>
+    <artifactId>dukes-tutoring-war</artifactId>
+    <packaging>war</packaging>
+
+    <name>dukes-tutoring-war</name>
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>dukes-tutoring-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>${maven.exec.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>create-tutoring-realm</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <skip>false</skip>
+                    <executable>${glassfish.home}/bin/asadmin${glassfish.executables.suffix}</executable>
+                    <arguments>
+                        <argument>create-auth-realm</argument>
+                        <argument>--classname</argument>
+                        <argument>com.sun.enterprise.security.auth.realm.jdbc.JDBCRealm</argument>
+                        <argument>--property</argument>
+                        <argument>jaas-context=jdbcRealm:datasource-jndi='java:global/TutoringDataSource':user-table=tutoring.PERSON:user-name-column=email:password-column=password:group-table=tutoring.PERSON:group-name-column=DTYPE:digest-algorithm=none</argument>
+                        <argument>tutoringRealm</argument>
+                    </arguments>
+                    <successCodes>
+                        <successCode>0</successCode>
+                        <successCode>1</successCode>
+                    </successCodes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

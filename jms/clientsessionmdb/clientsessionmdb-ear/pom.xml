@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <parent>
+        <artifactId>clientsessionmdb</artifactId>
+        <groupId>org.glassfish.javaeetutorial</groupId>
+        <version>7.0.6-SNAPSHOT</version>
+    </parent>
+    
+    <groupId>org.glassfish.javaeetutorial</groupId>
+    <artifactId>clientsessionmdb-ear</artifactId>
+    <packaging>ear</packaging>
+
+    <name>clientsessionmdb-ear</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>clientsessionmdb-ejb</artifactId>
+            <version>${project.version}</version>
+            <type>ejb</type>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>clientsessionmdb-appclient</artifactId>
+            <version>${project.version}</version>
+            <type>app-client</type>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <version>${maven.ear.plugin.version}</version>
+                <configuration>
+                    <version>6</version>
+                    <defaultLibBundleDir>lib</defaultLibBundleDir>
+                    <modules>
+                        <ejbModule>
+                            <groupId>org.glassfish.javaeetutorial</groupId>
+                            <artifactId>clientsessionmdb-ejb</artifactId>
+                        </ejbModule>
+                        <appClientModule>
+                            <groupId>org.glassfish.javaeetutorial</groupId>
+                            <artifactId>clientsessionmdb-appclient</artifactId>
+                        </appClientModule>
+                    </modules>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-acr-plugin</artifactId>
+                <version>${maven.acr.plugin.version}</version>
+                <extensions>true</extensions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>${maven.exec.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>get-client-stubs</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>${glassfish.home}/bin/asadmin${glassfish.executables.suffix}</executable>
+                            <!-- optional -->
+                            <arguments>
+                                <argument>get-client-stubs</argument>
+                                <argument>--appname</argument>
+                                <argument>${project.build.finalName}</argument>
+                                <argument>./target</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>run-appclient</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>${glassfish.home}/glassfish/bin/appclient${glassfish.executables.suffix}</executable>
+                            <!-- optional -->
+                            <arguments>
+                                <argument>-client</argument>
+                                <argument>./target/${project.build.finalName}Client.jar</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

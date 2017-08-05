@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewCustomerOrderTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form> 
+                <h:outputText rendered="#{userController.authenticatedUser == null}" value="#{bundle.NoOrdersForUnauthenticated}" ></h:outputText>
+                <h:dataTable value="#{customerOrderController.myOrders}" var="item" rowClasses="firstRow, secondRow" rendered="#{userController.authenticatedUser != null}" >
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCustomerOrderTitle_id}"/>
+                        </f:facet>
+                        <h:commandLink value="#{item.id}" onclick="open_win('#{request.contextPath}/orderDetail/View_popup.xhtml?orderId=#{item.id}')">
+                        </h:commandLink>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCustomerOrderTitle_orderStatus}"/>
+                        </f:facet>
+
+                            <h:outputText value="#{item.orderStatus.status}"/>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Description"/>
+                        </f:facet>
+                            <h:outputText value="#{item.orderStatus.description}"/>
+                    </h:column>
+                    
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCustomerOrderTitle_amount}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.amount}">
+                            <f:convertNumber currencySymbol="$" type="currency"/>
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCustomerOrderTitle_dateCreated}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.dateCreated}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

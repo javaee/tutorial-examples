@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE resources PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 
+3.1 Resource Definitions//EN" 
+"http://glassfish.org/dtds/glassfish-resources_1_5.dtd">
+<resources>
+  <admin-object-resource enabled="true" jndi-name="jms/AQueue" 
+object-type="user" res-adapter="jmsra" res-type="javax.jms.Queue">
+    <description/>
+    <property name="Name" value="AQueueP"/>
+  </admin-object-resource>
+  <admin-object-resource enabled="true" jndi-name="jms/BQueue" 
+object-type="user" res-adapter="jmsra" res-type="javax.jms.Queue">
+    <description/>
+    <property name="Name" value="BQueueP"/>
+  </admin-object-resource>
+  <admin-object-resource enabled="true" jndi-name="jms/CQueue" 
+object-type="user" res-adapter="jmsra" res-type="javax.jms.Queue">
+    <description/>
+    <property name="Name" value="CQueueP"/>
+  </admin-object-resource>
+  <admin-object-resource enabled="true" jndi-name="jms/OTopic" 
+object-type="user" res-adapter="jmsra" res-type="javax.jms.Topic">
+    <description/>
+    <property name="Name" value="OTopicP"/>
+  </admin-object-resource>
+</resources>

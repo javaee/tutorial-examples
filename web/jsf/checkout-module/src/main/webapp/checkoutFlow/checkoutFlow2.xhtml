@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet library="css" name="stylesheet.css"/>
+        <title>Checkout Flow Page Two</title>
+    </h:head>
+    <h:body style="background-color: lightblue">
+        <h:form prependId="false">
+            <h:graphicImage url="#{resource['images:duke.books.gif']}" 
+                            alt="Duke carrying books"/>
+            <h2>Checkout Flow Page Two</h2>
+            <p>Make sure this information is correct. If it is, click Continue. 
+                If it is not, click Go Back.</p>
+            <h3>Shipping Information</h3>
+            <h:panelGrid columns="2" role="presentation">
+                <h:outputLabel value="Name: " for="name"/>
+                <h:outputText id="name" value="#{checkoutFlowBean.name}" />
+
+                <h:outputLabel value="Address Line 1: " for="addr1"/>
+                <h:outputText id="addr1" value="#{checkoutFlowBean.addressLine1}"/>
+
+                <h:outputLabel value="Address Line 2:" for="addr2"/>
+                <h:outputText id="addr2" value="#{checkoutFlowBean.addressLine2}"/>
+
+                <h:outputLabel value="City: " for="city"/>
+                <h:outputText id="city" value="#{checkoutFlowBean.city}"/>
+
+                <h:outputLabel value="State:" for="state"/>
+                <h:outputText id="state" value="#{checkoutFlowBean.state}"/>
+
+                <h:outputLabel value="Zip/Postcode: " for="zip"/>
+                <h:outputText id="zip" value="#{checkoutFlowBean.postalCode}"/>
+
+                <h:outputLabel value="Country: " for="country"/>
+                <h:outputText id="country" value="#{checkoutFlowBean.country}"/>
+            </h:panelGrid>
+            <p></p>
+            <p><h:commandButton value="Continue" action="checkoutFlow3"/></p>
+            <p><h:commandButton value="Go Back" action="checkoutFlow"/></p>
+            <p><h:commandButton value="Exit Flow" action="returnFromCheckoutFlow"/></p>
+        </h:form>
+    </h:body>
+</html>
+

@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:dt="http://java.sun.com/jsf/composite/components"
+                template="./../adminTemplate.xhtml">
+
+    <ui:define name="content">
+        <dt:changeStudent action="/admin/address/createAddress" />
+
+        <h:form>
+            <h:panelGrid id="createAddressPanel" 
+                         summary="#{bundle['address.create.form.title']} #{adminManager.currentStudent.name}"
+                         columns="3">
+                <f:facet name="header">
+                    <h:outputText value="#{bundle['address.create.form.title']} #{adminManager.currentStudent.name}" />
+                </f:facet>
+                <h:outputLabel for="street1" value="#{bundle['address.street1']}:*" />
+                <h:inputText id="street1" value="#{addressBean.street1}" />
+                <h:message for="street1" style="color: #D20005"/>
+                <h:outputLabel for="street2" value="#{bundle['address.street2']}:" />
+                <h:inputText id="street2" value="#{addressBean.street2}" />
+                <h:message for="street2" style="color: #D20005"/>
+                <h:outputLabel for="city" value="#{bundle['address.city']}:*" />
+                <h:inputText id="city" value="#{addressBean.city}" />
+                <h:message for="city" style="color: #D20005"/>
+                <h:outputLabel for="province" value="#{bundle['address.province']}:*" />
+                <h:inputText id="province" value="#{addressBean.province}" />
+                <h:message for="province" style="color: #D20005"/>
+                <h:outputLabel for="country" value="#{bundle['address.country']}:" />
+                <h:inputText id="country" value="#{addressBean.country}" />
+                <h:message for="country" style="color: #D20005"/>
+                <h:outputLabel for="postalCode" value="#{bundle['address.postalcode']}:*" />
+                <h:inputText id="postalCode" value="#{addressBean.postalCode}" />
+                <h:message for="postalCode" style="color: #D20005"/>
+                <h:outputLabel for="primary" value="#{bundle['address.primary']}:" />
+                <h:selectBooleanCheckbox id="primary"  value="#{addressBean.isPrimary}" />
+                <h:message for="primary" style="color: #D20005"/>
+                <f:facet name="footer">
+                    <h:panelGroup style="display:block; text-align:center">
+                        <h:commandButton id="submit"
+                                         action="#{addressBean.submit(adminManager.currentStudent)}"
+                                         value="#{bundle['action.submit']}" />
+                        <h:commandButton id="cancel"
+                                         immediate="true"
+                                         action="/admin/index"
+                                         value="#{bundle['action.cancel']}" />
+                    </h:panelGroup>
+                </f:facet>
+            </h:panelGrid>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

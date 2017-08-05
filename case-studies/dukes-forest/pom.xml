@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>case-studies</artifactId>
+        <groupId>org.glassfish.javaeetutorial</groupId>
+        <version>7.0.6-SNAPSHOT</version>
+    </parent>
+    
+    <groupId>org.glassfish.javaeetutorial</groupId>
+    <artifactId>dukes-forest</artifactId>
+    <packaging>pom</packaging>
+
+    <name>dukes-forest</name>
+
+    <modules>
+        <module>events</module>
+        <module>entities</module>
+        <module>dukes-resources</module>
+        <module>dukes-payment</module>
+        <module>dukes-store</module>
+        <module>dukes-shipment</module>
+    </modules>
+    
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <configuration>
+                    <skip>true</skip>
+                    <executable>${glassfish.home}/bin/asadmin${glassfish.executables.suffix}</executable>
+                </configuration>
+            </plugin>    
+        </plugins>      
+    </build>
+
+</project>

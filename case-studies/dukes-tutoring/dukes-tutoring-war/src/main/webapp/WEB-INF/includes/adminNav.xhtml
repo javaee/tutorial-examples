@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:form>
+        <h:link outcome="/admin/index" value="${bundle['admin.nav.main']}" />
+        <br />
+        <h:link outcome="createStudent" value="${bundle['admin.nav.create_student']}" />
+        <br />
+        <h:link outcome="activateStudent" value="${bundle['admin.nav.activate_student']}" />
+        <br />
+        <h:commandLink action="${adminBean.logout}" value="${bundle['action.logout']}" rendered="${adminBean.isLoggedIn()}" />
+    </h:form>
+</html>
+

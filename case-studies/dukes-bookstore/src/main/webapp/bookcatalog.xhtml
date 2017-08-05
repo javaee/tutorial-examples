@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/bookstoreTemplate.xhtml">
+
+    <ui:define name="top"></ui:define> 
+    <ui:define name="content">
+        <h:form>
+            <p>
+                <h:commandLink id="check"
+                               action="bookshowcart"
+                               immediate="true"
+                               rendered="#{cart.numberOfItems > 0}">
+                    <h:outputText value="#{bundle.CartCheck}"/>
+                </h:commandLink>
+                &nbsp;&nbsp;
+                <h:outputText escape="false"
+                              value="&nbsp;"
+                              rendered="#{cart.numberOfItems > 0}"/>
+
+                <h:commandLink id="clear"
+                               action="#{cart.clear}"
+                               immediate="true"
+                               rendered="#{cart.numberOfItems > 0}">
+                    <h:outputText value="#{bundle.ClearCart}"/>
+                </h:commandLink>
+                &nbsp;&nbsp;
+                <h:outputText escape="false"
+                              value="&nbsp;"
+                              rendered="#{cart.numberOfItems > 0}"/>
+
+                <h:commandLink id="buy"
+                               action="#{cart.buy}"
+                               immediate="true"
+                               rendered="#{cart.numberOfItems > 0}">
+                    <h:outputText value="#{bundle.Buy}"/>
+                </h:commandLink>
+                &nbsp;&nbsp;
+                <h:outputText escape="false"
+                              rendered="#{cart.numberOfItems > 0}"
+                              value=""/>
+            </p>
+            <h:dataTable id="books"
+                         value="#{store.books}"
+                         var="book"
+                         headerClass="list-header"
+                         styleClass="list-background"
+                         rowClasses="list-row-even, list-row-odd"
+                         border="1" 
+                         summary="#{bundle.BookCatalog}" >
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.Quantities}" />
+                    </f:facet>
+                    <h:outputText value="${catalog.bookQuantity}" />
+                    <f:facet name="footer">
+                        <h:outputText value="#{bundle.Total} #{catalog.totalBooks}"/>
+                    </f:facet>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ItemTitle}"/>
+                    </f:facet>
+                    <h:commandLink action="#{catalog.details}"
+                                   value="#{book.title}">
+                        <f:setPropertyActionListener target="#{requestScope.book}" 
+                                                     value="#{book}"/>
+                    </h:commandLink>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.By}"/>
+                    </f:facet>
+                    <h:outputText value="#{book.firstname} #{book.surname}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ItemPrice}"/>
+                    </f:facet>
+                    <h:outputText value="#{book.price}" >
+                        <f:convertNumber currencySymbol="$" type="currency"/>
+                    </h:outputText>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.Inventory}" />
+                    </f:facet>
+                    <h:outputText value="#{book.inventory}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText  value="#{bundle.CartAdd}"/>
+                    </f:facet>
+                    <h:commandButton id="add"
+                                     action="#{catalog.add}" 
+                                     value="#{bundle.CartAdd}">
+                        <f:setPropertyActionListener target="#{requestScope.book}" 
+                                                     value="#{book}"/>
+                    </h:commandButton>
+                </h:column>
+
+            </h:dataTable>
+        </h:form>
+        <div class="messagecolor">
+            <h:messages showSummary="true" 
+                        showDetail="false"
+                        errorStyle="color: #d20005" 
+                        infoStyle="color: blue"/>
+        </div>
+    </ui:define>
+</ui:composition>

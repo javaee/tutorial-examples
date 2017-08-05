@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateContactTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <table columns="3" role="presentation">
+                    <tr>
+                        <td><h:outputLabel value="#{bundle.CreateContactLabel_firstName}" 
+                                           for="firstName" /></td>
+                        <td><h:inputText id="firstName" 
+                                         value="#{contactController.selected.firstName}" 
+                                         title="#{bundle.CreateContactTitle_firstName}" />
+                        </td>
+                        <td><h:message for="firstName" /></td>
+                    </tr>
+                    <tr>
+                        <td><h:outputLabel value="#{bundle.CreateContactLabel_lastName}" 
+                                           for="lastName" /></td>
+                        <td><h:inputText id="lastName" 
+                                         value="#{contactController.selected.lastName}" 
+                                         title="#{bundle.CreateContactTitle_lastName}" />
+                        </td>
+                        <td><h:message for="lastName" /></td>
+                    </tr>
+                    <tr>
+                        <td><h:outputLabel value="#{bundle.CreateContactLabel_birthday}" 
+                                           for="birthday" /></td>
+                        <td><h:inputText id="birthday" 
+                                         value="#{contactController.selected.birthday}" 
+                                         title="#{bundle.CreateContactTitle_birthday}" >
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:inputText></td>
+                        <td><h:message for="birthday" /></td>
+                    </tr>
+                    <tr>
+                        <td><h:outputLabel value="#{bundle.CreateContactLabel_homePhone}" 
+                                           for="homePhone" /></td>
+                        <td><h:inputText id="homePhone" 
+                                         value="#{contactController.selected.homePhone}" 
+                                         title="#{bundle.CreateContactTitle_homePhone}" /></td>
+                        <td><h:message for="homePhone" /></td>
+                    </tr>
+                    <tr>
+                        <td><h:outputLabel value="#{bundle.CreateContactLabel_mobilePhone}" 
+                                           for="mobilePhone" /></td>
+                        <td><h:inputText id="mobilePhone" 
+                                         value="#{contactController.selected.mobilePhone}" 
+                                         title="#{bundle.CreateContactTitle_mobilePhone}" /></td>
+                        <td><h:message for="mobilePhone" /></td>
+                    </tr>
+                    <tr>
+                        <td><h:outputLabel value="#{bundle.CreateContactLabel_email}" 
+                                           for="email" /></td>
+                        <td><h:inputText id="email" 
+                                         value="#{contactController.selected.email}" 
+                                         title="#{bundle.CreateContactTitle_email}" /></td>
+                        <td><h:message for="email" /></td>
+                    </tr>
+                </table>
+                <br />
+                <h:commandLink action="#{contactController.create}" value="#{bundle.CreateContactSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{contactController.prepareList}" value="#{bundle.CreateContactShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateContactIndexLink}" action="/index" immediate="true" />
+            </h:form>
+            <div class="messagecolor">
+                <h:messages showSummary="true" 
+                            showDetail="false"
+                            errorStyle="color: #d20005" 
+                            infoStyle="color: green"/>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    template="/template.xhtml"
+    xmlns:util="http://java.sun.com/jsf/composite/util">
+
+    <ui:define name="title">
+        <h:outputText value="${bundle.AdminHomeTitle}" />
+    </ui:define>
+
+    <ui:define name="body">
+        <h:form>
+            <ul class="adminItem">
+                <li><h2 >Manage Categories</h2></li>
+                <li><h:commandLink action="category/List" value="${bundle.ListCategoryTitle}" /></li>
+                <li><h:commandLink action="category/Create" value="${bundle.CreateCategoryTitle}" /></li>
+                <li><h2 >Manage Customers</h2></li>
+                <li><h:commandLink action="customer/List" value="${bundle.ListCustomerTitle}" /></li>
+                <li><h:commandLink action="customer/Create" value="${bundle.CreateCustomerAdminTitle}" /></li>
+                <li><h2 >Manage Administrators</h2></li>
+                <li><h:commandLink action="administrator/List" value="${bundle.ListAdministratorTitle}" /></li>
+                <li><h:commandLink action="administrator/Create" value="${bundle.CreateAdministratorTitle}" /></li>
+                <li><h2 >Manage Groups</h2></li>
+                <li><h:commandLink action="groups/List" value="${bundle.ListGroupsTitle}" /></li>
+                <li><h:commandLink action="groups/Create" value="${bundle.CreateGroupsTitle}" /></li>
+                <li><h2 >Manage Products</h2></li>
+                <li><h:commandLink action="#{productController.showAll()}" value="#{bundle.ListProductTitle}" /></li>
+                <li><h:commandLink action="product/Create" value="${bundle.CreateProductTitle}">
+                        <f:viewParam name="step" value="1"/>
+                    </h:commandLink>
+                </li>
+                <li><h2 >Manage Orders</h2></li>
+                <li><h:commandLink action="order/List" value="${bundle.ListCustomerOrderTitle}" /></li>
+                <li><h:outputLink value="/dukes-shipment/admin/index.xhtml">${bundle.GoToShipment}</h:outputLink></li>                
+            </ul>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/order-template.xhtml">
+        <ui:define name="title">Order Java Persistence Example</ui:define>
+        <ui:define name="body">
+
+        </ui:define>
+
+        <ui:define name="ordersTable">
+
+            <h:dataTable
+                var="order"
+                summary="Table of orders"
+                value="#{orderManager.orders}"
+                rules="all"
+                cellpadding="5">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Order ID" />
+                    </f:facet>
+                    <h:form>
+                        <h:commandLink id="order_id_link" action="lineItem">
+                            <h:outputText value="#{order.orderId}" />
+                            <f:setPropertyActionListener target="#{orderManager.currentOrder}" value="#{order.orderId}" />
+                        </h:commandLink>
+                    </h:form>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Shipment Info" />
+                    </f:facet>
+                    <h:outputText value="#{order.shipmentInfo}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Status" />
+                    </f:facet>
+                    <h:outputText value="#{order.status}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Last Updated" />
+                    </f:facet>
+                    <h:outputText value="#{order.lastUpdate}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Discount" />
+                    </f:facet>
+                    <h:outputText value="#{order.discount}%" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Actions" />
+                    </f:facet>
+                    <h:form>
+                        <h:commandLink value="Delete" actionListener="#{orderManager.removeOrder}" action="order">
+                            <f:param name="deleteOrderId" id="deleteOrderId" value="#{order.orderId}" />
+                        </h:commandLink>
+                    </h:form>
+                </h:column>
+            </h:dataTable>
+        </ui:define>
+
+        <ui:define name="newOrderForm">
+            <h:form>
+                <h:outputLabel for="orderIdInputText" rendered="true" value="Order ID: " />
+                <h:inputText id="orderIdInputText" required="true" value="#{orderManager.newOrderId}" /><br />
+
+
+                <h:outputLabel for="shipmentInfoInputText" rendered="true" value="Shipment Info: " />
+                <h:inputText id="shipmentInfoInputText" required="true" value="#{orderManager.newOrderShippingInfo}" /><br />
+
+                <h:outputLabel for="statusMenu" rendered="true" value="Status: " />
+                <h:selectOneMenu id="statusMenu" required="true" value="#{orderManager.newOrderStatus}">
+                    <f:selectItem itemValue="Y" itemLabel="Complete" />
+                    <f:selectItem itemValue="N" itemLabel="Pending" />
+                </h:selectOneMenu><br />
+
+                <h:outputLabel for="discountMenu" rendered="true" value="Discount: " />
+                <h:selectOneMenu id="discountMenu" required="true" value="#{orderManager.newOrderDiscount}">
+                    <f:selectItem itemValue="0" itemLabel="0 %" />
+                    <f:selectItem itemValue="5" itemLabel="5 %" />
+                    <f:selectItem itemValue="10" itemLabel="10 %" />
+                    <f:selectItem itemValue="15" itemLabel="15 %" />
+                    <f:selectItem itemValue="20" itemLabel="20 %" />
+                    <f:selectItem itemValue="25" itemLabel="25 %" />
+                    <f:selectItem itemValue="30" itemLabel="30 %" />
+                    <f:selectItem itemValue="35" itemLabel="35 %" />
+                    <f:selectItem itemValue="40" itemLabel="40 %" />
+                </h:selectOneMenu><br />
+
+                <h:commandButton value="Submit" action="#{orderManager.submitOrder}" />
+            </h:form>
+
+        </ui:define>
+
+        <ui:define name="findVendorForm">
+            <h:form>
+                <h:outputLabel for="findVendorInputText" rendered="true" value="Search for Vendors: " />
+                <h:inputText id="findVendorInputText" value="#{orderManager.vendorName}" required="true" />
+                <h:commandButton id="findVendorButton" action="#{orderManager.findVendor}" value="Find Vendor" />
+            </h:form>
+        </ui:define>
+
+        <ui:define name="findVendorTable">
+            <h:dataTable var="vendor" 
+                         summary="Table of vendors"
+                         value="#{orderManager.vendorSearchResults}"
+                         rules="all"
+                         cellpadding="5"
+                         rendered="#{orderManager.findVendorTableDisabled}">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Vendor" />
+                    </f:facet>
+                    <h:outputText value="#{vendor}" />
+                </h:column>
+            </h:dataTable>
+
+        </ui:define>
+    </ui:composition>
+</html>
+

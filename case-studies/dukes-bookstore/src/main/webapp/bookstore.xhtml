@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./bookstoreTemplate.xhtml">
+
+    <ui:define name="top"></ui:define> 
+    <ui:define name="content">
+        <h:form>
+            <p><b><h:outputText value="#{bundle.What}"/></b></p>
+            <blockquote><p>
+                    <em>
+                        <h:commandLink id="details" 
+                                       action="#{store.details}" 
+                                       immediate="true">
+                            <h:outputText value="#{store.featured.title}"/>
+                        </h:commandLink>
+                    </em>
+                    <h:outputText value="#{bundle.Talk}"/>
+                </p></blockquote>
+            <p><b><h:outputText value="You selected:"/></b></p>
+            <blockquote><p>
+                    <em>
+                        <h:commandLink id="selecteddetails" 
+                                       action="#{store.selectedDetails}" 
+                                       immediate="true">
+                            <h:outputText value="#{store.selectedTitle}"/>
+                        </h:commandLink>
+                    </em>
+                </p>
+            </blockquote>
+            <p>
+                <h:commandLink id="addfeatured" 
+                               action="#{store.add}" 
+                               immediate="true">
+                    <h:outputText value="#{bundle.CartAddFeatured}"/>
+                </h:commandLink>
+                &nbsp; &nbsp;
+                <h:commandLink id="addselected" 
+                               action="#{store.addSelected}" 
+                               immediate="true">
+                    <h:outputText value="#{bundle.CartAddSelected}"/>
+                </h:commandLink>
+                &nbsp; &nbsp;
+                <h:commandLink id="catalog" action="bookcatalog">
+                    <h:outputText value="#{bundle.Start}"/>
+                </h:commandLink>
+            </p>
+        </h:form>
+    </ui:define>
+</ui:composition>

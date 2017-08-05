@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:util="http://java.sun.com/jsf/composite/util">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditCustomerOrderTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditCustomerOrderLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{customerOrderController.selected.id}" title="#{bundle.EditCustomerOrderTitle_id}" required="true" requiredMessage="#{bundle.EditCustomerOrderRequiredMessage_id}" readonly="true" />
+                    <h:outputLabel value="#{bundle.EditCustomerOrderLabel_amount}" for="amount" />
+                    <h:inputText id="amount" value="#{customerOrderController.selected.amount}" title="#{bundle.EditCustomerOrderTitle_amount}" required="true" requiredMessage="#{bundle.EditCustomerOrderRequiredMessage_amount}"/>
+                    <h:outputLabel value="#{bundle.EditCustomerOrderLabel_dateCreated}" for="dateCreated" />
+                    <h:inputText id="dateCreated" value="#{customerOrderController.selected.dateCreated}" title="#{bundle.EditCustomerOrderTitle_dateCreated}" required="true" requiredMessage="#{bundle.EditCustomerOrderRequiredMessage_dateCreated}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditCustomerOrderLabel_orderStatus}" for="orderStatus" />
+                    <h:selectOneMenu id="orderStatus" value="#{customerOrderController.selected.orderStatus}" title="#{bundle.EditCustomerOrderTitle_orderStatus}" required="true" requiredMessage="#{bundle.EditCustomerOrderRequiredMessage_orderStatus}">
+                        <f:selectItems value="#{orderStatusController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditCustomerOrderLabel_customer}" for="customer" />
+                    <h:selectOneMenu id="customer" value="#{customerOrderController.selected.customer}" title="#{bundle.EditCustomerOrderTitle_customer}" required="true" requiredMessage="#{bundle.EditCustomerOrderRequiredMessage_customer}">
+                        <f:selectItems value="#{customerController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                
+                <util:commandButtons bundleEntity="EditCustomerOrder" controller="#{customerOrderController}" type="edit" />
+           
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

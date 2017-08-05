@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet library="css" name="stylesheet.css"/>
+        <title>Join Flow Page One</title>
+    </h:head>
+    <h:body style="background-color: lightgoldenrodyellow">
+        <h:form prependId="false">
+            <h:graphicImage url="#{resource['images:duke.books.gif']}" 
+                            alt="Duke carrying books"/>
+            <h2>Join Flow Page One</h2>
+            <p>Thank you, 
+                <span id="param1FromCheckoutFlow">#{flowScope.param1Value}</span>
+                from 
+                <span id="param2FromCheckoutFlow">#{flowScope.param2Value}</span>.
+                (Reading the parameters passed in from the checkout flow, 
+                if there are any.)</p>
+            <p>Check the boxes to receive our newsletters or special offers.</p>
+            <h:panelGrid columns="2" role="presentation">
+                <h:outputLabel for="clubcheck" 
+                               value="Yes! I'd like to join the Duke Fan Club!"/>
+                <h:selectBooleanCheckbox id="clubcheck" 
+                                         value="#{joinFlowBean.fanClub}"/>
+
+                <h:outputLabel for="newslettercheckbox"
+                               value="Send me these FREE newsletters:"/>
+                <h:selectManyCheckbox id="newslettercheckbox"
+                                      layout="pageDirection"
+                                      value="#{joinFlowBean.newsletters}">
+                    <f:selectItems value="#{joinFlowBean.newsletterItems}"/>
+                </h:selectManyCheckbox>
+            </h:panelGrid>
+            <p>Click Submit to continue, or Home to go to the site home page.</p>
+            <p><h:commandButton value="Submit" action="joinFlow2"/></p>
+            <p><h:commandButton value="Exit Flow" action="returnFromJoinFlow"/></p>
+        </h:form>
+    </h:body>
+</html>
+

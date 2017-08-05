@@ -1,0 +1,23 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>jms</artifactId>
+        <groupId>org.glassfish.javaeetutorial</groupId>
+        <version>7.0.6-SNAPSHOT</version>
+    </parent>
+
+    <groupId>org.glassfish.javaeetutorial</groupId>
+    <artifactId>simple</artifactId>
+    <packaging>pom</packaging>
+
+    <name>simple</name>
+  
+    <modules>
+        <module>asynchconsumer</module>
+        <module>clientackconsumer</module>
+        <module>messagebrowser</module>
+        <module>producer</module>
+        <module>synchconsumer</module>
+    </modules>
+</project>

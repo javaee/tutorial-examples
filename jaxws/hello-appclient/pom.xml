@@ -1,0 +1,81 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.glassfish.javaeetutorial</groupId>
+    <artifactId>hello-appclient</artifactId>
+    <packaging>app-client</packaging>
+
+    <name>hello-appclient</name>
+
+    <properties>
+    </properties>
+
+    <parent>
+        <groupId>org.glassfish.javaeetutorial</groupId>
+        <artifactId>jaxws</artifactId>
+        <version>7.0.6-SNAPSHOT</version>
+    </parent>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-acr-plugin</artifactId>
+                <version>${maven.acr.plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>                      
+                            <mainClass>javaeetutorial.hello.appclient.HelloAppClient</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jvnet.jax-ws-commons</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <version>${jaxws-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlDirectory>${basedir}/../helloservice-war/target/generated-sources/wsdl</wsdlDirectory>
+                            <wsdlFiles>
+                                <wsdlFile>HelloService.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <wsdlLocation>http://localhost:8080/helloservice/HelloService?WSDL</wsdlLocation>
+                            <packageName>javaeetutorial.helloservice.endpoint</packageName>
+                        </configuration>
+                        <phase>generate-sources</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>${maven.exec.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>run-appclient</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>${glassfish.home}/glassfish/bin/appclient${glassfish.executables.suffix}</executable>
+                            <!-- optional -->
+                            <arguments>
+                                <argument>-client</argument>
+                                <argument>./target/${project.build.finalName}.jar</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title><h:outputText value="#{bundle['students.page.title']}" /></title>
+    </h:head>
+    <h:body>
+        <composite:interface>
+            <composite:attribute name="isAdmin" default="false" />
+        </composite:interface>
+
+        <composite:implementation>
+            <h2><h:outputText value="#{bundle['students.table.title']}" /></h2>
+            <h:form id="allstudentsform">
+                <h:commandButton id="refreshbutton" value="Refresh" style="display:none">
+                    <f:ajax execute="refreshbutton" render="@form"/>
+                </h:commandButton>
+                <h:dataTable id ="allstudentstable"
+                             value="#{requestBean.allStudents}" 
+                             var="student"
+                             summary="#{bundle['students.table.title']}"
+                             rowClasses="table-row-odd,table-row-even">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle['student.name']}" />
+                        </f:facet>
+                        <h:outputText value="#{student.name}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle['student.status']}" />
+                        </f:facet>
+                        <h:outputText value="#{statusManager.getLocalizedStatus(student.status)}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle['table.header.actions']}" />
+                        </f:facet>
+                        <h:panelGroup rendered="#{cc.attrs.isAdmin}">
+                            <h:commandButton action="#{adminManager.editStudent(student)}"
+                                             value="#{bundle['action.edit']}">
+                            </h:commandButton>
+                            <h:commandButton action="#{adminManager.deleteStudent(student)}"
+                                             value="#{bundle['action.delete']}">
+                            </h:commandButton>
+                            <h:commandButton action="#{adminManager.createGuardian(student)}"
+                                             value="#{bundle['action.add.guardian']}">
+                            </h:commandButton>
+                            <h:commandButton action="#{adminManager.createStudentAddress(student)}"
+                                             value="#{bundle['action.add.address']}">
+                            </h:commandButton>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{!cc.attrs.isAdmin}">
+                            <h:commandButton action="#{requestBean.checkIn(student)}"
+                                             value="#{bundle['action.checkin']}"
+                                             rendered="#{student.status == 'OUT'}">
+                                <f:ajax event="action" render="@form"/>
+                            </h:commandButton>
+                            <h:commandButton action="#{requestBean.checkOut(student)}"
+                                             value="#{bundle['action.checkout']}"
+                                             rendered="#{student.status == 'IN'}">
+                                <f:ajax event="action" render="@form"/>
+                            </h:commandButton>
+                            <h:commandButton action="#{requestBean.atPark(student)}"
+                                             value="#{bundle['action.park.at']}"
+                                             rendered="#{student.status == 'IN'}">
+                                <f:ajax event="action" render="@form"/>
+                            </h:commandButton>
+                            <h:commandButton action="#{requestBean.backFromPark(student)}"
+                                             value="#{bundle['action.park.back']}"
+                                             rendered="#{student.status == 'PARK'}">
+                                <f:ajax event="action" render="@form"/>
+                            </h:commandButton>
+                        </h:panelGroup>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </composite:implementation>
+    </h:body>
+</html>
+

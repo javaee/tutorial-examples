@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <h:outputStylesheet library="css" name="default.css"/>
+        <title>The Task Creator Concurrency Example</title>
+        <script type="text/javascript">
+            var wsocket;
+            function connect() {
+                wsocket = new WebSocket("ws://localhost:8080/taskcreator/wsinfo");
+                wsocket.onmessage = onMessage;
+            }
+            function onMessage(evt) {
+                if (evt.data === "infobox") {
+                    document.getElementById('infoform:refreshinfo').click();
+                } else if (evt.data === "tasklist") {
+                    document.getElementById('infoform:refreshlist').click();
+                }
+            }
+            window.addEventListener("load", connect, false);
+        </script>
+    </h:head>
+    <h:body>
+        <h1>The Task Creator Concurrency Example</h1>
+        <p>
+            Submit tasks that will be executed by the 
+            managed executor service.
+        </p>
+        <h:form>
+            <h:panelGrid columns="6">
+                <h:outputText value="Task Type"/>
+                <h:selectOneMenu id="tasktype" value="#{taskCreatorBean.taskType}">
+                    <f:selectItem itemValue="IMMEDIATE" itemLabel="Immediate"/>
+                    <f:selectItem itemValue="PERIODIC" itemLabel="Periodic (8 sec)"/>
+                    <f:selectItem itemValue="DELAYED" itemLabel="Delayed (3 sec)"/>
+                </h:selectOneMenu>
+                <h:outputText value="Task Name"/>
+                <h:inputText id="taskname" label="Task Name" value="#{taskCreatorBean.taskName}">
+                    <f:validateLength minimum="3"/>
+                </h:inputText>
+                <h:commandButton value="Submit" actionListener="#{taskCreatorBean.submitTask()}">
+                    <f:ajax execute="@form" render="tasktype taskname tasknmessage :infoform"/>
+                </h:commandButton>
+            </h:panelGrid>
+            <h:message id="tasknmessage" for="taskname" class="errorstyle"/>
+        </h:form>
+        <br/>
+        <br/>
+        <h:form id="infoform">
+            <h:commandButton id="refreshinfo" value="Refresh" style="display:none">
+                <f:ajax execute="refreshinfo" render="infopanel"/>
+            </h:commandButton>
+            <h:commandButton id="refreshlist" value="Refresh" style="display:none">
+                <f:ajax execute="refreshlist" render="cancelpanel"/>
+            </h:commandButton>
+            <h:panelGrid id="infopanel" columns="1">
+                <h:outputText value="Task Execution Log"/>
+                <h:inputTextarea id="infolog" value="#{taskCreatorBean.taskMessages}"
+                                 rows="12" cols="65" readonly="true"/>
+                <h:commandButton value="Clean Log" actionListener="#{taskCreatorBean.clearInfoField()}">
+                    <f:ajax execute="@this" render="infolog"/>
+                </h:commandButton>
+            </h:panelGrid>
+            <br/>
+            <h:panelGrid id="cancelpanel" columns="1">
+                <h:outputText value="Cancel periodic task(s):"/>
+                <h:selectOneListbox size="5" value="#{taskCreatorBean.periodicTask}" class="tasklist">
+                    <f:selectItems value="#{taskCreatorBean.periodicTasks}"/>
+                </h:selectOneListbox>
+                <h:commandButton value="Cancel Task" actionListener="#{taskCreatorBean.cancelTask()}">
+                    <f:ajax execute="@form" render="@form"/>
+                </h:commandButton>
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>

@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    template="/template.xhtml">
+
+    <ui:define name="title">
+        Orders
+    </ui:define>
+
+    <ui:define name="body">
+        <h:form id="ordersFrm">
+            <div id="pendingOrders">
+                <nav id="pendingOrders">
+                    <h2 style="height: 40px"> <h:outputText value="#{bundle.ShipmentPending_title}" />
+
+                        <h:commandLink>
+                            <h:graphicImage library="img" title="Check for new orders" 
+                                            style="border:0px" name="refresh.png"/>
+                            <f:ajax execute="@form" render="@form"/>
+                        </h:commandLink>
+
+                    </h2>
+                    <ul>
+                            
+                               <h:dataTable id="out" value="#{shippingBean.pendingOrders}" var="key" style="width: 97%" >
+
+                                <h:column rendered="#{shippingBean.pendingOrders != null}">
+                                    <li class="shipItem" >
+                                        <h:outputLabel for="id" value="#{bundle.ViewCustomerOrderLabel_id} "/>
+                                        <h:outputText id="id" value="#{shippingBean.orders[key].id}"/><br />
+
+                                        <h:outputLabel for="customer" value="#{bundle.ViewCustomerLabel_name}"/>
+                                        <h:outputText id="customer" value="#{shippingBean.orders[key].customer.firstname} #{shippingBean.orders[key].customer.lastname}"/><br />
+
+                                        <h:outputLabel for="total" value="#{bundle.ViewCustomerOrderLabel_amount}"/>
+                                        <h:outputText id="total" value="#{shippingBean.orders[key].amount}">
+                                            <f:convertNumber currencySymbol="$" type="currency"/>
+                                        </h:outputText>
+                                        <br />
+
+                                        <h:outputLabel value="#{bundle.ViewCustomerOrderTitle_dateCreated}"/>
+                                        <h:outputText value="#{shippingBean.orders[key].dateCreated}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                        </h:outputText>
+
+                                        <div id="option"> 
+                                            <h:commandButton value="Approve" action="#{shippingBean.updateOrderStatus(key, 'SHIPPED')}" />
+                                            <h:commandButton value="Deny" action="#{shippingBean.updateOrderStatus(key, 'CANCELLED_MANUAL')}" />
+                                        </div>
+                                    </li>
+                                </h:column>
+                            </h:dataTable>
+                            
+                            <h:outputText id="noOrderMsg" value="No orders to process" rendered="#{shippingBean.pendingOrders == null}" />
+                    </ul>
+                </nav>
+
+                <nav id="completedOrders">
+                    <h2 style="height: 40px"> #{bundle.ShipmentClosed_title} </h2>
+                    <ul>
+                        <h:dataTable id="completedOrders" value="#{shippingBean.completedOrders}" var="item" style="width: 97%"  >
+                            <h:column>
+                                <li>
+                                    <h:outputLabel for="id" value="#{bundle.ViewCustomerOrderLabel_id} "/>
+                                    <h:outputText id="id" value="#{item.id}"/><br />
+
+                                    <h:outputLabel for="customer" value="#{bundle.ViewCustomerLabel_name}"/>
+                                    <h:outputText id="customer" value="#{item.customer.firstname} #{item.customer.lastname}"/><br />
+
+                                    <h:outputLabel for="total" value="#{bundle.ViewCustomerOrderLabel_amount}"/>
+                                    <h:outputText id="total" value="#{item.amount}">
+                                        <f:convertNumber currencySymbol="$" type="currency"/>
+                                    </h:outputText>
+                                    <br />
+
+                                    <h:outputLabel value="#{bundle.ViewCustomerOrderTitle_dateCreated}"/>
+                                    <h:outputText value="#{item.dateCreated}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                    </h:outputText>
+                                </li>
+                            </h:column>
+                        </h:dataTable>
+                    </ul>
+                </nav>
+            </div>
+
+        </h:form>
+    </ui:define> 
+</ui:composition>

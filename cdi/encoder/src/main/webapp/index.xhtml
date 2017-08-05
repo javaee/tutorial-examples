@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <h:outputStylesheet library="css" name="default.css"/>
+        <title>String Encoder</title>
+    </h:head>
+    <h:body>
+        <h2>String Encoder</h2>
+        <p>Enter a string and an integer, then click Encode.</p>
+        <p>Depending on which alternative is enabled, the coder bean
+            will either display the argument values or return a string that
+            shifts the letters in the original string by the value you
+            specify. The value must be between 0 and 26.</p>
+        <h:form id="encodeit">
+            <p><h:outputLabel value="Enter a string: " for="inputString"/>
+                <h:inputText id="inputString"
+                             value="#{coderBean.inputString}"/>
+                <h:outputLabel value="Enter the number of letters to shift by: "
+                               for="transVal"/>
+                <h:inputText id="transVal" value="#{coderBean.transVal}"/></p>
+            <p><h:commandButton value="Encode"
+                                action="#{coderBean.encodeString()}"/></p>
+            <p><h:outputLabel value="Result: " for="outputString"/>
+                <h:outputText id="outputString" 
+                              value="#{coderBean.codedString}"
+                              style="color:blue"/></p>
+            <p><h:commandButton value="Reset" 
+                                action="#{coderBean.reset}"/></p>
+        </h:form>
+        <div class="messagecolor">
+            <h:messages showSummary="true" 
+                        showDetail="false"
+                        errorStyle="color: #d20005" 
+                        infoStyle="color: blue"/>
+        </div>
+    </h:body>
+</html>
+

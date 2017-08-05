@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+    <action>
+            <actionName>CUSTOM-Run Application Client</actionName>
+            <displayName>Run Application Client</displayName>
+            <goals>
+                <goal>install</goal>
+            </goals>
+        </action>
+</actions>

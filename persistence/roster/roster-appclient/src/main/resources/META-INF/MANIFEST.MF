@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Class-Path: roster-ejb.jar, roster-common.jar
+Main-Class: javaeetutorial.roster.client.RosterClient

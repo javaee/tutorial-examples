@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE resources PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Resource Definitions//EN" "http://glassfish.org/dtds/glassfish-resources_1_5.dtd">
+<resources>
+  <admin-object-resource enabled="true" jndi-name="jms/MyQueue" object-type="user" res-adapter="jmsra" res-type="javax.jms.Queue">
+    <description/>
+    <property name="Name" value="PhysicalQueue"/>
+  </admin-object-resource>
+  <admin-object-resource enabled="true" jndi-name="jms/MyTopic" object-type="user" res-adapter="jmsra" res-type="javax.jms.Topic">
+    <description/>
+    <property name="Name" value="PhysicalTopic"/>
+  </admin-object-resource>
+</resources>

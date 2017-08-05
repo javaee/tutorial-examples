@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<job id="phonebilling" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+    <properties>
+        <property name="log_file_name" value="log1.txt"/>
+        <property name="airtime_price" value="0.08"/>
+        <property name="tax_rate" value="0.07"/>
+    </properties>
+    <step id="callrecords" next="bills">
+        <chunk checkpoint-policy="item" item-count="10">
+            <reader ref="CallRecordReader"></reader>
+            <processor ref="CallRecordProcessor"></processor>
+            <writer ref="CallRecordWriter"></writer>
+        </chunk>
+    </step>
+    <step id="bills">
+        <chunk checkpoint-policy="item" item-count="2">
+            <reader ref="BillReader">
+                <properties>
+                    <property name="firstItem" value="#{partitionPlan['firstItem']}"/>
+                    <property name="numItems" value="#{partitionPlan['numItems']}"/>
+                </properties>
+            </reader>
+            <processor ref="BillProcessor"></processor>
+            <writer ref="BillWriter"></writer>
+        </chunk>
+        <partition>
+            <mapper ref="BillPartitionMapper"/>
+        </partition>
+        <end on="COMPLETED"/>
+    </step>
+</job>

@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="action"
+                      default="/admin/index"
+                      targets="changeStudentForm:button" />
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <h:form id="changeStudentForm">
+            <h:panelGrid id="findStudentsPanel" columns="3">
+                <h:selectOneMenu id="selectStudentMenu" 
+                                 title="#{bundle['action.change_student']}"
+                                 value="#{adminManager.currentStudent}" >
+                    <f:selectItems value="#{requestBean.allStudents}"
+                                   var="selectedStudent"
+                                   itemLabel="#{selectedStudent.name}"
+                                   itemValue="#{selectedStudent}"/>
+                </h:selectOneMenu>
+                <h:commandButton id="button"
+                                 value="#{bundle['action.change_student']}" />
+
+                <h:message id="findStudentMessage"
+                           for="selectStudentMenu"
+                           style="color: #D20005" />
+            </h:panelGrid>
+        </h:form>
+    </cc:implementation>
+</html>

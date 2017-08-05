@@ -1,0 +1,249 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+              version="2.2">
+
+    <!-- ========== Application Wide Features ================================ -->
+
+    <application>
+        <resource-bundle>
+            <base-name>
+                javaeetutorial.dukesbookstore.web.messages.Messages
+            </base-name>
+            <var>bundle</var>
+        </resource-bundle>
+        <locale-config>
+            <default-locale>en</default-locale>
+            <supported-locale>de</supported-locale>
+            <supported-locale>es</supported-locale>
+            <supported-locale>fr</supported-locale>
+        </locale-config>
+    </application>
+
+    <!-- ========== Managed Beans ============================================ -->
+  
+    <!-- =================== Initialize Image Map Hotspot Data ============== -->
+    <managed-bean eager="true">
+        <description>
+            Causes the default VariableResolver implementation to instantiate the 
+            managed bean Book201 of the class components.model.ImageArea in application 
+            scope if the bean does not already exist in any scope, and initialize the
+            shape, alt, and coords properties with the values specified by the
+            managed-property elements.
+        </description>
+        <managed-bean-name>Book201</managed-bean-name>
+        <managed-bean-class>javaeetutorial.dukesbookstore.model.ImageArea</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+        <managed-property>
+            <description>
+                Initializes the shape property of the managed bean Book201 with the value 
+                rect.
+            </description>
+            <property-name>shape</property-name>
+            <value>rect</value>
+        </managed-property>
+        <managed-property>
+            <description>
+                Initializes the alt property of the managed bean Book201 with the value 
+                Duke.
+            </description>
+            <property-name>alt</property-name>
+            <value>Duke</value>
+        </managed-property>
+        <managed-property>
+            <description>
+                Initializes the coords property of the managed bean Book201 with the value 
+                specified by the value element. 
+            </description>
+            <property-name>coords</property-name>
+            <value>67,23,212,268</value>
+        </managed-property>
+    </managed-bean>
+    
+    <managed-bean eager="true">
+        <description>
+            Causes the default VariableResolver implementation to instantiate the 
+            managed bean Book202 of the class components.model.ImageArea in application 
+            scope if the bean does not already exist in any scope, and initialize the
+            shape, alt, and coords properties with the values specified by the
+            managed-property elements.
+        </description>
+        <managed-bean-name>Book202</managed-bean-name>
+        <managed-bean-class>javaeetutorial.dukesbookstore.model.ImageArea</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+        <managed-property>
+            <description>
+                Initializes the shape property of the managed bean Book202 with the value 
+                rect.
+            </description>
+            <property-name>shape</property-name>
+            <value>rect</value>
+        </managed-property>
+        <managed-property>
+            <description>
+                Initializes the alt property of the managed bean Book202 with the value 
+                Jeeves.
+            </description>
+            <property-name>alt</property-name>
+            <value>Jeeves</value>
+        </managed-property>
+        <managed-property>
+            <description>
+                Initializes the coords property of the managed bean Book202 with the value 
+                specified by the value element. 
+            </description>
+            <property-name>coords</property-name>
+            <value>337,23,480,268</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean eager="true">
+        <description>
+            Causes the default VariableResolver implementation to instantiate the 
+            managed bean Book203 of the class components.model.ImageArea in application 
+            scope if the bean does not already exist in any scope, and initialize the
+            shape, alt, and coords properties with the values specified by the
+            managed-property elements.
+        </description>
+        <managed-bean-name>Book203</managed-bean-name>
+        <managed-bean-class>javaeetutorial.dukesbookstore.model.ImageArea</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+        <managed-property>
+            <description>
+                Initializes the shape property of the managed bean Book203 with the value 
+                rect.
+            </description>
+            <property-name>shape</property-name>
+            <value>rect</value>
+        </managed-property>
+        <managed-property>
+            <description>
+                Initializes the alt property of the managed bean Book203 with the value 
+                Masterson.
+            </description>
+            <property-name>alt</property-name>
+            <value>Masterson</value>
+        </managed-property>
+        <managed-property>
+            <description>
+                Initializes the coords property of the managed bean Book203 with the value 
+                specified by the value element. 
+            </description>
+            <property-name>coords</property-name>
+            <value>605,23,747,268</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean eager="true">
+        <description>
+            Causes the default VariableResolver implementation to instantiate the 
+            managed bean Book205 of the class components.model.ImageArea in application 
+            scope if the bean does not already exist in any scope, and initialize the
+            shape, alt, and coords properties with the values specified by the
+            managed-property elements.
+        </description>
+        <managed-bean-name>Book205</managed-bean-name>
+        <managed-bean-class>javaeetutorial.dukesbookstore.model.ImageArea</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+        <managed-property>
+            <description>
+                Initializes the shape property of the managed bean Book205 with the value 
+                rect.
+            </description>
+            <property-name>shape</property-name>
+            <value>rect</value>
+        </managed-property>
+        <managed-property>
+            <description>
+                Initializes the alt property of the managed bean Book205 with the value 
+                Novation.
+            </description>
+            <property-name>alt</property-name>
+            <value>Novation</value>
+        </managed-property>
+        <managed-property>
+            <description>
+                Initializes the coords property of the managed bean Book205 with the value 
+                specified by the value element. 
+            </description>
+            <property-name>coords</property-name>
+            <value>69,323,210,569</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean eager="true">
+        <description>
+            Causes the default VariableResolver implementation to instantiate the 
+            managed bean Book206 of the class components.model.ImageArea in application 
+            scope if the bean does not already exist in any scope, and initialize the
+            shape, alt, and coords properties with the values specified by the
+            managed-property elements.
+        </description>
+        <managed-bean-name>Book206</managed-bean-name>
+        <managed-bean-class>javaeetutorial.dukesbookstore.model.ImageArea</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+        <managed-property>
+            <description>
+                Initializes the shape property of the managed bean Book206 with the value 
+                rect.
+            </description>
+            <property-name>shape</property-name>
+            <value>rect</value>
+        </managed-property>
+        <managed-property>
+            <description>
+                Initializes the alt property of the managed bean Book206 with the value 
+                Thrilled.
+            </description>
+            <property-name>alt</property-name>
+            <value>Thrilled</value>
+        </managed-property>
+        <managed-property>
+            <description>
+                Initializes the coords property of the managed bean Book206 with the value 
+                specified by the value element. 
+            </description>
+            <property-name>coords</property-name>
+            <value>337,323,479,569</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean eager="true">
+        <description>
+            Causes the default VariableResolver implementation to instantiate the 
+            managed bean Book207 of the class components.model.ImageArea in application 
+            scope if the bean does not already exist in any scope, and initialize the
+            shape, alt, and coords properties with the values specified by the
+            managed-property elements.
+        </description>
+        <managed-bean-name>Book207</managed-bean-name>
+        <managed-bean-class>javaeetutorial.dukesbookstore.model.ImageArea</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+        <managed-property>
+            <description>
+                Initializes the shape property of the managed bean Book207 with the value 
+                rect.
+            </description>
+            <property-name>shape</property-name>
+            <value>rect</value>
+        </managed-property>
+        <managed-property>
+            <description>
+                Initializes the alt property of the managed bean Book207 with the value 
+                Coding.
+            </description>
+            <property-name>alt</property-name>
+            <value>Coding</value>
+        </managed-property>
+        <managed-property>
+            <description>
+                Initializes the coords property of the managed bean Book207 with the value 
+                specified by the value element. 
+            </description>
+            <property-name>coords</property-name>
+            <value>604,323,748,569</value>
+        </managed-property>
+    </managed-bean>
+
+</faces-config>

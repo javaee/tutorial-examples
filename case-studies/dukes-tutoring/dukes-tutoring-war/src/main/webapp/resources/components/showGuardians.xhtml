@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <h:form id="showGuardian">
+            <br/>
+            <h:outputText value="#{bundle['guardian.current']}"
+                          rendered="#{adminManager.currentStudent.guardians.size() > 0}"/>
+            <h:outputText value="#{bundle['guardian.none']}"
+                          rendered="#{adminManager.currentStudent.guardians.size() == 0}"/>
+            <h:panelGrid columns="3">
+                <h:selectOneListbox size="5" id="selectRGuardiansMenu" 
+                                    value="#{guardianBean.selectedGuardian}"
+                                    converter="guardian"
+                                    rendered="#{adminManager.currentStudent.guardians.size() > 0}">
+                    <f:selectItems value="#{adminManager.currentStudent.guardians}"
+                                   var="sGuardian"
+                                   itemLabel="#{sGuardian.name}"
+                                   itemValue="#{sGuardian}" />
+                </h:selectOneListbox>
+                <h:commandButton value="#{bundle['action.remove_guardian']}"
+                                 rendered="#{adminManager.currentStudent.guardians.size() > 0}"
+                                 action="#{adminBean.removeGuardianFromStudent(guardianBean.selectedGuardian, adminManager.currentStudent)}"/>
+                <h:message id="removeGuardiansMessage"
+                           for="selectRGuardiansMenu"
+                           style="color: #D20005" />
+            </h:panelGrid>
+            <br/>
+        </h:form>
+    </cc:implementation>
+</html>

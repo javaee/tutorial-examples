@@ -1,0 +1,591 @@
+/**
+ * Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+ *
+ * You may not modify, use, reproduce, or distribute this software except in
+ * compliance with  the terms of the License at:
+ * https://github.com/javaee/tutorial-examples/LICENSE.txt
+ */
+/* default styles for FOREST application */
+
+/* HTML components
+
+Color scheme
+#47C53B - lightgreen
+#217238 - green
+#3B5A3F - dark green
+
+#5097A5 - dark-blue
+#A1D0DA - light-blue
+
+#D20005 - red
+
+#045491 - Link
+
+*/
+html,body {
+    background: #fff url(#{resource['img:background.jpg']}) repeat-x 50% -26px;
+    font-size: 12px;
+    font-family: Verdana, "Verdana CE", Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+
+#pendingOrders nav {
+    width: 48%;
+    float: left;
+    position: inherit;
+    border: #dddddd 1px solid;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 0px;
+    overflow: auto;    
+}
+
+
+nav ul {
+    list-style: none;
+    padding:0px;
+    margin:0px;
+}
+
+nav li {
+    display: block;
+    text-decoration: none;
+    text-align: left;
+    padding: 10px;
+    position: relative;
+    width:100%;
+}
+
+nav li:hover,nav li:focus {
+    color: black;
+    background-color: rgba(97, 124, 88, 0.3);
+    display: block;
+    border: #dddddd 1px solid;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+.shipItem:hover {
+    color: black;
+    background-color: rgba(97, 124, 88, 0.3);
+    display: block;
+    border: #dddddd 0px solid;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+nav #option {
+    float: right;
+}
+
+#pagewidth {
+    width: 80%;
+    text-align: left;
+    margin: 0 auto;
+}
+
+#browserCheck {
+    text-align: center;
+    margin: 10em;
+}
+
+header {
+    position: relative;
+    height: 150px;
+    background: #fff url(#{resource['img:top-background.jpg']}) repeat-x;
+    width: 100%;
+    display: block;
+    overflow: auto;
+    border: none 5px #000000;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;	
+    z-index: 1;
+}
+header img {
+    position: relative;
+    float:right;
+
+}
+#menu {
+    width: 23%;
+    float: left;
+    position: relative;
+    background: #fff url(#{resource['img:top-background.jpg']}) repeat-x;
+    background-color: #3B5A3F;
+    border: none 5px #000000;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+#breadcrumb {
+    position: relative;
+    width: 75%;
+    float: right;
+    margin-top: 5px;
+}
+#breadcrumb a {
+    color: black;
+    font-size: 14px;
+}
+
+#breadcrumb a:hover {
+    color: #3B5A3F;
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+#maincol {
+    position: relative;
+    width: 75%;
+    float: right;
+    border: none 1px #000000;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    margin-top:5px;
+    padding: 0px;
+    padding-left: 10px;
+}
+#maincol-ship {
+    position: relative;
+    width: 100%;
+    float: right;
+    border: none 1px #000000;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    margin-top:5px;
+    padding: 0px;
+    margin-left: 10px;
+}
+#messagePanel {
+    position: absolute;
+    background-color: #fff;
+    border: solid 1px #cee573;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    left: 45%;
+    top: 65%;
+    color: black;
+    font-weight: bold;
+    font-size: 10px;
+}
+#messagePanel ul {
+    list-style: none;
+    list-style-position: inside;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 190%;
+}
+
+#messagePanel .errorMessage {
+    color: #D20005;
+}
+#messagePanel .infoMessage {
+    color: black;
+}   
+
+
+/***************************************/
+.clearfix:after {
+    content: "."; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+
+.clearfix{display: inline-block;}
+
+/* Hides from IE-mac \*/
+* html .clearfix{height: 1%;}
+.clearfix{display: block;}
+/* End hide from IE-mac */  
+
+/* *************************** CONTENT BOXES *************************** */
+#categoryList {
+    font-size: 18px;
+}
+#categoryList input {
+    font-size:250%;
+}
+
+/* HEADER */
+#topbar {
+    background-color:#3B5A3F;
+    color: white;
+    padding: 5px;
+    margin: 0px;
+    font-weight: bold;
+    height: 28px;
+    text-align: center;
+    border-bottom: 1px solid black;
+}
+#topbar label {
+    border: 0px;
+}
+
+
+#topbar form {
+    margin-top: 5px;
+    display: inline;
+    border: 0px;
+}
+
+#topbar input[type='text'] {
+    width: 120px;
+    color: black;
+    font-size: 10px;
+    height: 16px;
+    padding-left: 5px;
+}
+
+#topbar input[type='password'] {
+    width: 80px;
+    color: black;
+    font-size: 10px;
+    height: 16px;
+    padding-left: 5px;
+}
+
+#topbar a {
+    background-color: #a6bf40;
+    border: solid 1px #000000;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    font-size: 13px;
+    height: 16px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    color: black;
+    cursor: default;
+}
+
+#topbar a:link,a:visited {
+    color: black;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+#topbar a:link:hover,a:visited:hover {
+    color: black;
+    font-weight: normal;
+}
+
+h1 {
+    font-size: 300%;
+    font-weight: bold;
+    color: white;
+    padding: 0px;
+}
+
+h2 {
+    font-size: 180%;
+    font-weight: bold;
+    color: black;
+    border-bottom: 2px #a6bf40 groove;
+    text-align: left;
+}
+
+h3 {
+    font-size: 150%;
+    font-weight: bold;
+    color: white;
+    padding-left: 10%;
+}
+
+#maincol {
+    height: 600px;
+    overflow: auto;
+    border:0px;
+}
+
+.adminItem {
+    list-style-type: none;
+    list-style-position: inside;
+    width: 85%;
+    margin-left: 10px;
+    padding-left:10px;
+}
+
+#maincol table {
+    width: 100%;
+    border: 0px;
+}
+
+#maincol th {
+
+}
+#maincol td {
+    padding: 0px;
+    padding-left: 5px;
+    margin: 0px;
+    text-align: left;
+    vertical-align: middle;
+    border: 0px;
+    height: 30px;
+}
+
+#maincol tr {
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+}
+
+#maincol a {
+    color: darkgreen;
+    font-weight: bold;
+    padding: 5px;
+}
+
+#maincol a:link:hover {
+    color: #A1D0DA;
+    font-weight: bold;
+    padding: 5px;
+}
+
+#info {
+    font-size: 12px;
+    margin: 10px;
+    margin-left: 60%;
+    padding-bottom: 10px;
+    display: block;
+    border: 0px;
+    border-top: 2px solid #2E2E19;
+}
+
+#info input {
+    margin: 1px;
+    padding: 0px;
+    background-color: #cee573;
+    border: 0px;
+    height: 16px;
+    font-size: 12px;
+}
+
+#info label {
+    font-size: 12px;
+}
+
+
+#vertmenu ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+#vertmenu ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+#menu li {
+    margin: 5px;
+    padding: 0px;
+    display: inline-block;
+    letter-spacing: 2px;
+    border-bottom: 2px solid #2E2E19;
+    width: 95%;
+    height: 55px;
+}
+
+#menu li a {
+    font-size: 2em;
+    display: block;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+}
+
+#menu li a:hover,nav li a:focus {
+    color: #A1D0DA;
+    /*letter-spacing: 5px;*/
+    display: block;
+}
+
+
+#messageBox {
+    background-color: #7c9934;
+    text-align: right;
+    font-weight: bold;
+    color: white;
+    height: 28px;
+}
+
+.messageError {
+    list-style: none;
+    display: inline;
+    text-align: center;
+    color: black;
+}
+
+.messageInfo {
+    list-style: none;
+    display: inline;
+    text-align: center;
+}
+
+.commandButtons {
+    margin-left: 0px;
+    padding: 3px 15px;
+}
+
+.commandButtons li {
+    list-style: none;
+    display: inline;
+    border-left: 1px solid #dddddd;
+}
+
+table {
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    font-size: 14px;
+}
+
+.firstRow {
+    background-color: #FFFFF;
+    text-align:left;
+
+}
+
+.secondRow {
+    background-color: #67a100;
+    background-color: rgba(103, 161, 0, 0.8);
+    text-align:left;
+}
+
+/*****************************************************************************/
+/* PURE HTML
+*****************************************************************************/
+table {
+    border: 0px;
+}
+
+th {
+    background-color:#a6bf40;
+    color: black;
+    height: 25px;
+    text-align: left;
+    font-weight: bold;
+    font-size:14px;
+    padding: 0px;
+    padding-left: 10px;
+}
+
+
+a {
+    margin: 0px;
+    padding: 0px;
+}
+
+a:link,a:visited {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:link:hover,a:visited:hover {
+    font-weight: bold;
+}
+
+label {
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: capitalize;
+    padding-right: 2px;
+}
+input {
+    background-color: #a6bf40;
+    border: solid 1px #000000;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+input[type=submit] {
+    font-weight: bold;
+}
+
+input[type=text] {
+    padding-left:5px;
+    width: 80%;
+    height: 100%;
+}
+
+input[type=password] {
+    padding-left:5px;
+    width: 40%;
+    height: 100%;
+}
+
+option {
+    background-color: #a6bf40;
+    border: solid 1px #000000;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    height: 100%;        
+    padding-left:5px;
+}
+.subTitle {
+    height: 25px;
+    font-size: 17px;
+    font-weight: bold;
+    color: white;
+}
+
+.user {
+    text-align: right;
+    font-weight: bold;
+}
+#shoppingCart {
+    padding-left: 10px;
+    width: 100%;
+    float: left;
+    position: relative;
+    font-size: 20px;
+}
+
+#shoppingCart table {
+    width: 95%;
+    float: left;
+    position: relative;
+    
+}
+#shoppingCart tr {
+    border-bottom: 1px dotted;
+}
+
+.productImgCol {
+    width: 10%;
+}
+
+.productDescriptionCol{
+    width:60%;
+    text-align: left;
+}
+
+.productPriceCol td {
+    width:30%;
+    text-align: left;
+}
+.productBtnCol td {
+    width:10%;
+    text-align: left;
+}

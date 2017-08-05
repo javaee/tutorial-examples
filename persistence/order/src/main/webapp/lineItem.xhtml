@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+        <ui:composition template="/lineItem-template.xhtml">
+
+            <ui:define name="title">Line Items for Order #{orderManager.currentOrder}</ui:define>
+            <ui:define name="body">
+                <h:form>
+                    <h:dataTable var="lineItem"
+                                 summary="Table of line items"
+                                 value="#{orderManager.lineItems}"
+                                 rules="all"
+                                 cellpadding="5">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Item ID" />
+                            </f:facet>
+                            <h:outputText value="#{lineItem.itemId}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Quantity" />
+                            </f:facet>
+                            <h:outputText value="#{lineItem.quantity}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Vendor Part Number" />
+                            </f:facet>
+                            <h:outputText value="#{lineItem.vendorPart.vendorPartNumber}" />
+                        </h:column>
+                    </h:dataTable>
+                    <br />
+
+                    <h:dataTable id="orderPartsTable"
+                                 summary="Table of parts"
+                                 value="#{orderManager.newOrderParts}"
+                                 var="part"
+                                 rules="all"
+                                 cellpadding="5">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Part Number" />
+                            </f:facet>
+                            <h:outputText value="#{part.partNumber}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Revision" />
+                            </f:facet>
+                            <h:outputText value="#{part.revision}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Vendor Part Number" />
+                            </f:facet>
+                            <h:outputText value="#{part.vendorPart.vendorPartNumber}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Add To Order" />
+                            </f:facet>
+                            <h:commandButton value="Add" action="#{orderManager.addLineItem}">
+                                <f:setPropertyActionListener target="#{orderManager.selectedPartNumber}" value="#{part.partNumber}" />
+                                <f:setPropertyActionListener target="#{orderManager.selectedPartRevision}" value="#{part.revision}" />
+                                <f:setPropertyActionListener target="#{orderManager.selectedVendorPartNumber}" value="#{part.vendorPart.vendorPartNumber}" />
+                            </h:commandButton>
+                        </h:column>
+                    </h:dataTable>
+                    <br />
+
+                    <h:commandButton value="Back To Orders" action="order" />
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+</html>
+

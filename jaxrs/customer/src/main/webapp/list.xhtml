@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Java EE 7 Tutorial: JAX-RS Customer example</title>
+    </h:head>
+    <h:body>
+            <h:dataTable var="customer"
+                         summary="List of all customers"
+                         value="#{customerManager.customers}"
+                         rules="all"
+                         cellpadding="5">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Customer" />
+                    </f:facet>
+                    <h:outputText value="#{customer.firstname} #{customer.lastname}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Address" />
+                    </f:facet>
+                    <h:outputText value="#{customer.address.street}"/>
+                    <h:outputText value="#{customer.address.city}, #{customer.address.province} #{customer.address.zip}" />
+                    <h:outputText value="#{customer.address.country}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Email" />
+                    </f:facet>
+                    <h:outputText value="#{customer.email}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Phone" />
+                    </f:facet>
+                    <h:outputText value="#{customer.phone}" />
+                </h:column>
+            </h:dataTable>
+        <h:link outcome="index" value="Create new Customer" />
+    </h:body>
+</html>
+

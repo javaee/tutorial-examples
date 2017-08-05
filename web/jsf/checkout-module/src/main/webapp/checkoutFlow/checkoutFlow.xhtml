@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet library="css" name="stylesheet.css"/>
+        <title>Checkout Flow Page One</title>
+    </h:head>
+    <h:body style="background-color: lightblue">
+        <h:form prependId="false">
+            <h:graphicImage url="#{resource['images:duke.books.gif']}" 
+                            alt="Duke carrying books"/>
+            <h2>Checkout Flow Page One</h2>
+            <p>Thank you for your order of #{checkoutBean.numItems} books at a
+                cost of 
+                <h:outputText value="#{checkoutBean.cost}">
+                    <f:convertNumber currencySymbol="$" type="currency"/>
+                </h:outputText>.</p>
+            <p>Please provide your shipping information. Required fields are
+                marked with an asterisk (*).</p>
+            <h3>Shipping Information</h3>
+            <h:panelGrid columns="3" role="presentation">
+                <h:outputLabel value="Name: * " for="name"/>
+                <h:inputText id="name" value="#{checkoutFlowBean.name}" 
+                             required="true"/>
+                <h:message for="name" style="color: #D20005"/>
+
+                <h:outputLabel value="Address Line 1: * " for="addr1"/>
+                <h:inputText id="addr1" value="#{checkoutFlowBean.addressLine1}"
+                             required="true"/>
+                <h:message for="addr1" style="color: #D20005"/>
+
+                <h:outputLabel value="Address Line 2:" for="addr2"/>
+                <h:inputText id="addr2" value="#{checkoutFlowBean.addressLine2}"/>
+                <h:message for="addr2" style="color: #D20005"/>
+
+                <h:outputLabel value="City: * " for="city"/>
+                <h:inputText id="city" value="#{checkoutFlowBean.city}"
+                             required="true"/>
+                <h:message for="city" style="color: #D20005"/>
+
+                <h:outputLabel value="State:" for="state"/>
+                <h:inputText id="state" value="#{checkoutFlowBean.state}"
+                             maxlength="2"/>
+                <h:message for="state" style="color: #D20005"/>
+
+                <h:outputLabel value="Zip/Postcode: * " for="zip"/>
+                <h:inputText id="zip" value="#{checkoutFlowBean.postalCode}"
+                             required="true"/>
+                <h:message for="zip" style="color: #D20005"/>
+
+                <h:outputLabel value="Country: * " for="country"/>
+                <h:inputText id="country" value="#{checkoutFlowBean.country}"
+                             required="true"/>
+                <h:message for="country" style="color: #D20005"/>
+            </h:panelGrid>
+
+            <p>If you called this flow from the Join flow, you can see these parameters:
+                "<h:outputText value="#{flowScope.param1Value}"/>" and
+                "<h:outputText value="#{flowScope.param2Value}"/>"
+            </p>
+            <p>Click Continue to move to the next page of the flow.</p>
+            <p></p>
+            <p><h:commandButton value="Continue" action="checkoutFlow2"/></p>
+        </h:form>
+    </h:body>
+</html>
+

@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="./../adminTemplate.xhtml">
+
+    <ui:define name="content">
+        <h:form>
+            <h:panelGrid id="createStudentPanel" columns="3"
+                         summary="#{bundle['student.create.form.title']}">
+                <f:facet name="header">
+                    <h:outputText value="#{bundle['student.create.form.title']}" />
+                </f:facet>
+                <h:outputLabel for="firstName" value="#{bundle['person.firstName']}:*" />
+                <h:inputText id="firstName" value="#{studentBean.firstName}" />
+                <h:message for="firstName" style="color: #D20005"/>
+                <h:outputLabel for="middleName" value="#{bundle['person.middleName']}:" />
+                <h:inputText id="middleName" value="#{studentBean.middleName}" />
+                <h:message for="middleName" style="color: #D20005"/>
+                <h:outputLabel for="lastName" value="#{bundle['person.lastName']}:*" />
+                <h:inputText id="lastName" value="#{studentBean.lastName}" />
+                <h:message for="lastName" style="color: #D20005"/>
+                <h:outputLabel for="nickName" value="#{bundle['person.nickName']}:" />
+                <h:inputText id="nickName" value="#{studentBean.nickname}" />
+                <h:message for="nickName" style="color: #D20005"/>
+                <h:outputLabel for="suffix" value="#{bundle['person.suffix']}:" />
+                <h:inputText id="suffix" value="#{studentBean.suffix}" />
+                <h:message for="suffix" style="color: #D20005"/>
+                <h:outputLabel for="school" value="#{bundle['student.school']}:" />
+                <h:inputText id="school" value="#{studentBean.school}" />
+                <h:message for="school" style="color: #D20005" />
+                <h:outputLabel for="grade" value="#{bundle['student.grade']}:" />
+                <h:selectOneMenu id="grade" value="#{studentBean.grade}">
+                    <f:selectItem itemLabel="-Select One-" itemValue="None selected" />
+                    <f:selectItems value="#{adminManager.allGrades}" />
+                </h:selectOneMenu>
+                <h:message for="grade" style="color: #D20005" />
+                <h:outputLabel for="email" value="#{bundle['person.email']}:" />
+                <h:inputText id="email" value="#{studentBean.email}" >
+                     <f:passThroughAttribute name="type" value="email" />
+                </h:inputText>
+                <h:message for="email" style="color: #D20005"/>
+                <h:outputLabel for="homePhone" value="#{bundle['person.homePhone']}:" />
+                <h:inputText id="homePhone" value="#{studentBean.homePhone}" />
+                <h:message for="homePhone" style="color: #D20005"/>
+                <h:outputLabel for="mobilePhone" value="#{bundle['person.mobilePhone']}:" />
+                <h:inputText id="mobilePhone" value="#{studentBean.mobilePhone}" />
+                <h:message for="mobilePhone" style="color: #D20005"/>
+                <f:facet name="footer">
+                    <h:panelGroup style="display:block; text-align:center">
+                        <h:commandButton id="submit" 
+                                         action="#{studentBean.submit}"
+                                         value="#{bundle['action.submit']}" />
+                        <h:commandButton id="cancel"
+                                         action="/admin/index"
+                                         immediate="true"
+                                         value="#{bundle['action.cancel']}" />
+                    </h:panelGroup>
+                </f:facet>
+            </h:panelGrid>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
+

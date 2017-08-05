@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<job id="webserverlog" xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+     version="1.0">
+    <properties>
+        <property name="log_file_name" value="log1.txt"/>
+        <property name="filtered_file_name" value="filtered1.txt"/>
+        <property name="num_browsers" value="2"/>
+        <property name="browser_1" value="Tablet Browser D"/>
+        <property name="browser_2" value="Tablet Browser E"/>
+        <property name="buy_page" value="/auth/buy.html"/>
+        <property name="out_file_name" value="result1.txt"/>
+    </properties>
+    <listeners>
+        <listener ref="InfoJobListener"/>
+    </listeners>
+    <step id="mobilefilter" next="mobileanalyzer">
+        <listeners>
+            <listener ref="InfoItemProcessListener"/>
+        </listeners>
+        <chunk checkpoint-policy="item" item-count="10">
+            <reader ref="LogLineReader"></reader>
+            <processor ref="LogLineProcessor"></processor>
+            <writer ref="LogFilteredLineWriter"></writer>
+        </chunk>
+    </step>
+    <step id="mobileanalyzer">
+        <batchlet ref="MobileBatchlet"></batchlet>
+        <end on="COMPLETED"/>
+    </step>
+</job>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCustomerOrderTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:outputText escape="false" value="#{bundle.ListCustomerOrderEmpty}" rendered="#{customerOrderController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{customerOrderController.items.rowCount > 0}">
+
+                    <ul class="commandButtons">
+                        <li><h:commandLink action="#{customerOrderController.previous}" value="#{bundle.Previous} #{customerOrderController.pagination.pageSize}" rendered="#{customerOrderController.pagination.hasPreviousPage}"/></li>
+                        <li><h:commandLink action="#{customerOrderController.next}" value="#{bundle.Next} #{customerOrderController.pagination.pageSize}" rendered="#{customerOrderController.pagination.hasNextPage}"/></li>
+                        <li><h:outputLink value="/dukes-shipment/admin/index.xhtml">${bundle.GoToShipment}</h:outputLink></li>
+                    </ul>
+                    <h:dataTable value="#{customerOrderController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="firstRow, secondRow" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCustomerOrderTitle_id}"/>
+                            </f:facet>
+                            <h:commandLink value="#{item.id}" onclick="open_win('../orderDetail/View_popup.xhtml?orderId=#{item.id}')">
+                            </h:commandLink>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCustomerOrderTitle_amount}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.amount}">
+                                <f:convertNumber currencySymbol="$" type="currency"/>
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCustomerOrderTitle_dateCreated}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dateCreated}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCustomerOrderTitle_orderStatus}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.orderStatus.status}"/>
+                            
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCustomerOrderTitle_statusDescription}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.orderStatus.description}"/>
+
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCustomerOrderTitle_customer}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.customer.firstname}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{customerOrderController.prepareView}" value="#{bundle.ListCustomerOrderViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{customerOrderController.destroy}" value="#{bundle.ListCustomerOrderDestroyLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{customerOrderController.cancelOrder}" value="#{bundle.ListCustomerOrderCancelLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

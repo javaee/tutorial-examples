@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    https://github.com/javaee/tutorial-examples/LICENSE.txt
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet library="css" name="default.css" />
+        <title>
+            #{bundle.OrderDetail_Title}
+        </title>
+    </h:head>
+
+    <h:body>
+        <h:form styleClass="jsfcrud_list_form">
+            <h:panelGroup rendered="#{orderDetailController.items.rowCount > 0}">
+
+                <h2><h:outputText value="Items for order ##{param['orderId']}"/></h2>
+                <h:dataTable value="#{orderDetailController.items}" var="item" border="0" cellpadding="2" cellspacing="0" width="100%" rowClasses="firstRow, secondRow" rules="all" style="border:solid 1px">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListOrderDetailTitle_qty}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.qty}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListOrderDetailTitle_product}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.product.name}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListProductTitle_price}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.product.price}">
+                            <f:convertNumber currencySymbol="$" type="currency"/>
+                        </h:outputText>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGroup>
+            <br />
+            <h:commandLink onclick="window.close()" value="#{bundle.OrderDetail_CloseButton}" style="color:white; font-weight: bold;" />
+        </h:form>
+    </h:body>
+
+</html>
