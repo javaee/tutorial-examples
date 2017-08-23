@@ -18,6 +18,7 @@
         <module>converter-secure</module>
         <module>hello1-formauth</module>
         <module>hello2-basicauth</module>
+        <module>security-api</module>
     </modules>
     
     <build>
