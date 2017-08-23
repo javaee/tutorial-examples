@@ -97,48 +97,62 @@ public class JsonbBean implements Serializable {
     /* Action method for the form in index.xhtml.
      * Creates Person object and creates formatted JSON */
     public String createJson() {
-        Person person = new Person(name, profession, new ArrayList<>());
-        person.getPhoneNumbers().add(new PhoneNumber(phoneType1, number1));
-        person.getPhoneNumbers().add(new PhoneNumber(phoneType2, number2));
+        Person person = new Person(this.name, this.profession, new ArrayList<>());
+        person.getPhoneNumbers().add(new PhoneNumber(this.phoneType1, this.number1));
+        person.getPhoneNumbers().add(new PhoneNumber(this.phoneType2, this.number2));
 
-        /* JSON-B config and Jsonb instance creating */
+        /* JSON-B config and Jsonb instance creation */
         JsonbConfig config = new JsonbConfig()
                 .withFormatting(true);
         Jsonb jsonb = JsonbBuilder.create(config);
 
-        /* Deserialization to JSON */
-        jsonTextArea = jsonb.toJson(person);
+        /* Serialization to JSON */
+        this.jsonTextArea = jsonb.toJson(person);
         
         /* JSF navigation */
         return "jsongenerated";
     }
     
     /* Action method for form in jsongenerated.xhtml.
-     * Parses JSON data from the textarea to Person object
+     * Deserialize JSON from the textarea to Person object
      * and fills these data to form. */
     public String parseJson() {
-        /* JSON-B config and Jsonb instance creating */
-        JsonbConfig config = new JsonbConfig()
-                .withFormatting(true);
-        Jsonb jsonb = JsonbBuilder.create(config);
+        clearFields();
 
-        /* Deserialization of JSON */
-        Person person = jsonb.fromJson(jsonTextArea, Person.class);
-        name = person.getName();
-        profession = person.getProfession();
-        PhoneNumber number = person.getPhoneNumbers().get(0);
-        if (number != null) {
-            number1 = number.getNumber();
-            phoneType1 = number.getType();
-        }
-        number = person.getPhoneNumbers().get(1);
-        if (number != null) {
-            number2 = number.getNumber();
-            phoneType2 = number.getType();
+        /* JSON-B config and Jsonb instance creation */
+        Jsonb jsonb = JsonbBuilder.create(new JsonbConfig());
+
+        /* Deserialization of JSON to Object */
+        Person person = jsonb.fromJson(this.jsonTextArea, Person.class);
+        this.name = person.getName();
+        this.profession = person.getProfession();
+        if (person.getPhoneNumbers() != null) {
+            int index = 0;
+            for (PhoneNumber number : person.getPhoneNumbers()) {
+                if (index == 0) {
+                    this.number1 = number.getNumber();
+                    this.phoneType1 = number.getType();
+                } else if (index == 1) {
+                    this.number2 = number.getNumber();
+                    this.phoneType2 = number.getType();
+                } else {
+                    break;
+                }
+                index++;
+            }
         }
 
         /* JSF navigation */
         return "index";
+    }
+
+    private void clearFields() {
+        this.name = "";
+        this.profession = "";
+        this.number1 = "";
+        this.phoneType1 = "";
+        this.number2 = "";
+        this.phoneType2 = "";
     }
 
 }
