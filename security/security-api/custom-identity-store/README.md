@@ -1,89 +1,57 @@
 # Custom Identity Store
 
-An application also can provide its own IdentityStore. Bundled with the application, this is the identity store, which is then used for authentication, authorization.
+An application can also provide its own IdentityStore. Bundled with the application, this custom identity store can then be used for authentication and authorization.
 
 This example demonstrates how a custom identity store `TestIdentityStore` can be defined and provided as part of the application being deployed.
 
-In this example, following user is defined along with the roles they are in.
+In this example, the following user is defined along with the group he is in.
 
-|User|Password|Role|
+|User|Password|Group|
 |----|--------|----|
-|reza|secret1|foo,bar|
+|Joe|secret1|foo,bar|
 
-When a request is made to the application with certain credentials, the authentication mechanism bundled with this application comes into affect and an authentication is done against the `TestIdentityStore` as defined in the application.
+When a request is made to the application with certain credentials, the configured authentication mechanism comes into effect and authentication is performed against the `TestIdentityStore` as defined in the application.
 
-Post authentication, the application will also verify the roles the caller is in and will send the details as part of the response.
+Post authentication, the application also verifies the roles the caller is in and sends the details as part of the response.
 
-Defining credentials and the roles assigned to the users is done as shown below in `TestIdentityStore`:
+How to define credentials and the roles assigned to users is shown below:
 
 ```java
-if (usernamePasswordCredential.compareTo("reza", "secret1")) {
-    return new CredentialValidationResult("reza", new HashSet<>(asList("foo", "bar")));
+if (usernamePasswordCredential.compareTo("Joe", "secret1")) {
+    return new CredentialValidationResult("Joe", new HashSet<>(asList("foo", "bar")));
 }
 
 ```
 
-With application, a custom `HttpAuthenticationMechanism` too is bundled which gets called during authentication process.
+Authentication mechanism, which gets invoked when a request is made, is defined in `ApplicationConfig` as shown below:
 
 ```java
-@RequestScoped
-public class TestAuthenticationMechanism implements HttpAuthenticationMechanism {
+@BasicAuthenticationMechanismDefinition(
+        realmName = "file"
+)
 
-    @Inject
-    private IdentityStoreHandler identityStoreHandler;
-
-    @Override
-    public AuthenticationStatus validateRequest(HttpServletRequest request, HttpServletResponse response, HttpMessageContext httpMessageContext) throws AuthenticationException {
-
-        if (request.getParameter("name") != null && request.getParameter("password") != null) {
-
-            // Get the (caller) name and password from the request
-            // NOTE: This is for the smallest possible example only. In practice
-            // putting the password in a request query parameter is highly
-            // insecure
-            String name = request.getParameter("name");
-            Password password = new Password(request.getParameter("password"));
-
-            // Delegate the {credentials in -> identity data out} function to
-            // the Identity Store
-            // Password internally gets verified using the PasswordHash specified while defining DatabaseIdentityStore.
-            CredentialValidationResult result = identityStoreHandler.validate(
-                new UsernamePasswordCredential(name, password));
-
-            if (result.getStatus() == VALID) {
-                // Communicate the details of the authenticated user to the
-                // container. In many cases the underlying handler will just store the details
-                // and the container will actually handle the login after we return from
-                // this method.
-                return httpMessageContext.notifyContainerAboutLogin(
-                    result.getCallerPrincipal(), result.getCallerGroups());
-            } else {
-                return httpMessageContext.responseUnauthorized();
-            }
-        }
-
-        return httpMessageContext.doNothing();
-    }
+@ApplicationScoped
+@Named
+public class ApplicationConfig {
 
 }
 ```
-Following snippet from `TestAuthenticationMechanism` delegates the validation task to underlying `DefaultIdentityStoreHandler`, which in turn validates the credentials against `TestIdentityStore` as defined in this application.
+Please note that in GlassFish, in case of BASIC authentication, the `realmName` basically is presented to user ,as a hint, when wrong credentials are provided by the user.
 
-```java
-CredentialValidationResult result = identityStoreHandler.validate(
-    new UsernamePasswordCredential(name, password));
-```
 
-On successful authorization, container gets notified with caller details.
+```bash
+curl -I -u Joe http://localhost:8080/custom-identity-store/servlet
+Enter host password for user 'Joe':
+HTTP/1.1 401 Unauthorized
+Server: GlassFish Server Open Source Edition  5.0
+X-Powered-By: Servlet/3.1 JSP/2.3 (GlassFish Server Open Source Edition  5.0  Java/Oracle Corporation/1.8)
+WWW-Authenticate: Basic realm="file"
+Content-Length: 1090
+Content-Language:
+Content-Type: text/html
+```
+In this example, the authentication mechanism is `BasicAuthenticationMechanism`, as is evident from the snippet above.
 
-```java
-return httpMessageContext.notifyContainerAboutLogin(
-    result.getCallerPrincipal(), result.getCallerGroups());
-```
-If credentials are not valid, an unauthorized response is sent back to the caller with status `401` indicating that authentication has failed with provided credentails.
-```java
-return httpMessageContext.responseUnauthorized();
-```
 
 When a request is made to the application, the roles the user is in, gets returned as part of the repsonse.
 
@@ -111,14 +79,14 @@ public class Servlet extends HttpServlet {
 
 }
 ```
-Notice that, the container itself needs to be made aware of the supported roles and it is done with the help of `@DeclareRoles` annotation as shown above.
+Note that the container needs to be made aware of the supported roles, which is achieved with the help of the `@Declareroles` annotation as shown above.
 
 ```java
 @DeclareRoles({ "foo", "bar", "kaz" })
 ```
-In Glassfish 5.0, role to group mapping is enabled by default. Hence there is no need to bundle `web.xml` with the application to provide mapping between roles and the groups in Glassfish.
+In GlassFish 5.0, role to group mapping is enabled by default. Therefore, you do not need to bundle `web.xml` with the application to provide mapping between roles and groups.
 
-In this example, we would be using credentials of user `reza` to make a request and see if response is according to credentails as specified in `TestIdentityStore` above.
+In this example, we are using the credentials of user `Joe` to make a request and to validate the response according to the credentials defined in `TestIdentityStore` above.
 
 **Steps:**
 
@@ -130,19 +98,19 @@ In this example, we would be using credentials of user `reza` to make a request 
 
 `asadmin deploy <project>/target/custom-identity-store.war`
 
-Post which, a request can be made to the application using the URL shown below:
+After the application is deployed, we can make a request to the application using the URL shown below:
 
 ---
 
 **Request URL:**
 
 ```bash
-http://localhost:8080/custom-identity-store/servlet?name=reza&password=secret1
+http://localhost:8080/custom-identity-store/servlet?name=Joe&password=secret1
 ```
 **Response:**
 
 ```bash
-web username: reza
+web username: Joe
 web user has role "foo": true
 web user has role "bar": true
 web user has role "kaz": false
@@ -156,7 +124,7 @@ web user has role "kaz": false
 **Request URL:**
 
 ```bash
-http://localhost:8080/custom-identity-store/servlet?name=reza&password=secret3
+http://localhost:8080/custom-identity-store/servlet?name=Joe&password=secret3
 ```
 
 **Response:**
