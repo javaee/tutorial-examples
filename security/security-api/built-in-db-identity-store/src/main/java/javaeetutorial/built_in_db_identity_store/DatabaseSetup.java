@@ -11,6 +11,8 @@ package javaeetutorial.built_in_db_identity_store;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -18,7 +20,9 @@ import javax.annotation.Resource;
 import javax.annotation.sql.DataSourceDefinition;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import javax.inject.Inject;
 import javax.sql.DataSource;
+import javax.security.enterprise.identitystore.Pbkdf2PasswordHash;
 
 @Singleton
 @Startup
@@ -27,25 +31,34 @@ public class DatabaseSetup {
     @Resource(lookup="java:comp/DefaultDataSource")	
     private DataSource dataSource;
 
+    @Inject
+    private Pbkdf2PasswordHash passwordHash;
+    
     @PostConstruct
     public void init() {
         
-        executeUpdate(dataSource, "CREATE TABLE caller(name VARCHAR(64) PRIMARY KEY, password VARCHAR(64))");
+        Map<String, String> parameters= new HashMap<>();
+        parameters.put("Pbkdf2PasswordHash.Iterations", "3072");
+        parameters.put("Pbkdf2PasswordHash.Algorithm", "PBKDF2WithHmacSHA512");
+        parameters.put("Pbkdf2PasswordHash.SaltSizeBytes", "64");
+        passwordHash.initialize(parameters);
+
+        executeUpdate(dataSource, "CREATE TABLE caller(name VARCHAR(64) PRIMARY KEY, password VARCHAR(255))");
         executeUpdate(dataSource, "CREATE TABLE caller_groups(caller_name VARCHAR(64), group_name VARCHAR(64))");
         
-        executeUpdate(dataSource, "INSERT INTO caller VALUES('reza', 'secret1')");
-        executeUpdate(dataSource, "INSERT INTO caller VALUES('alex', 'secret2')");
-        executeUpdate(dataSource, "INSERT INTO caller VALUES('arjan', 'secret2')");
-        executeUpdate(dataSource, "INSERT INTO caller VALUES('werner', 'secret2')");
+        executeUpdate(dataSource, "INSERT INTO caller VALUES('Joe', '" + passwordHash.generate("secret1".toCharArray()) + "')");
+        executeUpdate(dataSource, "INSERT INTO caller VALUES('Sam', '" + passwordHash.generate("secret2".toCharArray()) + "')");
+        executeUpdate(dataSource, "INSERT INTO caller VALUES('Tom', '" + passwordHash.generate("secret2".toCharArray()) + "')");
+        executeUpdate(dataSource, "INSERT INTO caller VALUES('Sue', '" + passwordHash.generate("secret2".toCharArray()) + "')");
         
-        executeUpdate(dataSource, "INSERT INTO caller_groups VALUES('reza', 'foo')");
-        executeUpdate(dataSource, "INSERT INTO caller_groups VALUES('reza', 'bar')");
+        executeUpdate(dataSource, "INSERT INTO caller_groups VALUES('Joe', 'foo')");
+        executeUpdate(dataSource, "INSERT INTO caller_groups VALUES('Joe', 'bar')");
         
-        executeUpdate(dataSource, "INSERT INTO caller_groups VALUES('alex', 'foo')");
-        executeUpdate(dataSource, "INSERT INTO caller_groups VALUES('alex', 'bar')");
+        executeUpdate(dataSource, "INSERT INTO caller_groups VALUES('Sam', 'foo')");
+        executeUpdate(dataSource, "INSERT INTO caller_groups VALUES('Sam', 'bar')");
         
-        executeUpdate(dataSource, "INSERT INTO caller_groups VALUES('arjan', 'foo')");
-        executeUpdate(dataSource, "INSERT INTO caller_groups VALUES('werner', 'foo')");
+        executeUpdate(dataSource, "INSERT INTO caller_groups VALUES('Tom', 'foo')");
+        executeUpdate(dataSource, "INSERT INTO caller_groups VALUES('Sue', 'foo')");
     }
 
     /**
