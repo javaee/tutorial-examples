@@ -11,7 +11,6 @@ package javaeetutorial.custom_identity_store;
 import java.io.IOException;
 
 import javax.annotation.security.DeclareRoles;
-import javax.security.enterprise.authentication.mechanism.http.BasicAuthenticationMechanismDefinition;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.HttpConstraint;
 import javax.servlet.annotation.ServletSecurity;

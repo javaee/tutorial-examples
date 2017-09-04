@@ -36,7 +36,7 @@ public class ApplicationConfig {
 
 }
 ```
-Please note that in GlassFish, in case of BASIC authentication, the `realmName` basically is presented to user ,as a hint, when wrong credentials are provided by the user.
+Please note that in GlassFish, when BasicAuthenticationMechanism is used as the authentication mechanism, the `realmName` basically is presented to user ,as a hint, when wrong credentials are provided by the user.
 
 
 ```bash
