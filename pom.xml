@@ -9,8 +9,8 @@
         <artifactId>jvnet-parent</artifactId>
         <version>5</version>
     </parent>
-    <groupId>org.glassfish.docs</groupId>
-    <artifactId>javaee-tutorial-examples</artifactId>
+    <groupId>org.glassfish.javaeetutorial</groupId>
+    <artifactId>javaeetutorial</artifactId>
     <version>8.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Java EE Tutorial Examples</name>
