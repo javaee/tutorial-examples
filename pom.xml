@@ -4,9 +4,14 @@
                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.glassfish.javaeetutorial</groupId>
-    <artifactId>javaeetutorial</artifactId>
-    <version>7.0.6-SNAPSHOT</version>
+    <parent>
+        <groupId>net.java</groupId>
+        <artifactId>jvnet-parent</artifactId>
+        <version>5</version>
+    </parent>
+    <groupId>org.glassfish.docs</groupId>
+    <artifactId>javaee-tutorial-examples</artifactId>
+    <version>8.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Java EE Tutorial Examples</name>
     
@@ -21,7 +26,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <javaee.api.version>8.0-b22</javaee.api.version>
+        <javaee.api.version>8.0</javaee.api.version>
         <maven.compiler.plugin.version>3.1</maven.compiler.plugin.version>
         <maven.source.plugin.version>2.2.1</maven.source.plugin.version>
         <maven.clean.plugin.version>2.5</maven.clean.plugin.version>
@@ -217,14 +222,21 @@
             </plugin>
             <plugin>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>${maven.release.plugin.version}</version>
+                <version>${maven.release.plugin.version}</version>                
                 <configuration>
-                    <!--
-                     During release:perform, enable the "sdk" profile
-                    -->
-                    <releaseProfiles>sdk</releaseProfiles>
+                    <mavenExecutorId>forked-path</mavenExecutorId>
+                    <useReleaseProfile>false</useReleaseProfile>                    
+                    <arguments>${release.arguments}</arguments>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <tagNameFormat>@{project.version}</tagNameFormat>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.scm</groupId>
+                        <artifactId>maven-scm-provider-gitexe</artifactId>
+                        <version>1.9.4</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
