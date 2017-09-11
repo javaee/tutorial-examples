@@ -46,6 +46,7 @@
         <glassfish.domain.name>domain1</glassfish.domain.name>
         <glassfish.home>${glassfish.home.prefix}/glassfish5</glassfish.home>
         <integration.container.id>glassfish5x</integration.container.id>
+        <maven.deploy.skip>true</maven.deploy.skip>
     </properties>
     
     <profiles>
