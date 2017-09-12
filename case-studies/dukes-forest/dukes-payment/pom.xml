@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.glassfish.javaeetutorial</groupId>
         <artifactId>dukes-forest</artifactId>
-        <version>8.0</version>
+        <version>8.1-SNAPSHOT</version>
     </parent>
 
     <groupId>org.glassfish.javaeetutorial</groupId>
