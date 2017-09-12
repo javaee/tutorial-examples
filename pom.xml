@@ -46,6 +46,7 @@
         <maven.deploy.skip>true</maven.deploy.skip>
         <maven.javadoc.skip>true</maven.javadoc.skip>
         <maven.source.skip>true</maven.source.skip>
+        <maven.source.attach>false</maven.source.attach>
     </properties>
     
     <profiles>
