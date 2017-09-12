@@ -45,6 +45,7 @@
         <integration.container.id>glassfish5x</integration.container.id>
         <maven.deploy.skip>true</maven.deploy.skip>
         <maven.javadoc.skip>true</maven.javadoc.skip>
+        <maven.source.skip>true</maven.source.skip>
     </properties>
     
     <profiles>
