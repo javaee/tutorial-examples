@@ -34,7 +34,7 @@
         <maven.jar.plugin.version>2.4</maven.jar.plugin.version>
         <maven.rar.plugin.version>2.3</maven.rar.plugin.version>
         <maven.license.plugin.version>1.10.b1</maven.license.plugin.version>
-        <maven.release.plugin.version>2.4.1</maven.release.plugin.version>
+        <maven.release.plugin.version>2.5.2</maven.release.plugin.version>
         <maven.exec.plugin.version>1.2.1</maven.exec.plugin.version>
         <junit.version>4.11</junit.version>
         <eclipselink.version>2.5.0</eclipselink.version>
@@ -141,6 +141,11 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven.compiler.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${maven.source.plugin.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
