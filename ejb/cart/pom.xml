@@ -9,7 +9,7 @@
     <parent>
         <artifactId>ejb</artifactId>
         <groupId>org.glassfish.javaeetutorial</groupId>
-        <version>8.0</version>
+        <version>8.1-SNAPSHOT</version>
     </parent>
     <modules>
         <module>cart-common</module>
