@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.glassfish.javaeetutorial</groupId>
     <artifactId>security</artifactId>
-    <version>8.0</version>
+    <version>8.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     
     <name>security</name>
@@ -10,7 +10,7 @@
     <parent>
         <groupId>org.glassfish.javaeetutorial</groupId>
         <artifactId>javaeetutorial</artifactId>
-        <version>8.0</version>
+        <version>8.1-SNAPSHOT</version>
     </parent>
     
     <modules>

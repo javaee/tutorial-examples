@@ -5,7 +5,7 @@
     <parent>
         <artifactId>batch</artifactId>
         <groupId>org.glassfish.javaeetutorial</groupId>
-        <version>8.0</version>
+        <version>8.1-SNAPSHOT</version>
     </parent>
 
     <groupId>org.glassfish.javaeetutorial.batch</groupId>
