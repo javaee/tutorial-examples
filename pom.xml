@@ -8,14 +8,14 @@
     </parent>
     <groupId>org.glassfish.javaeetutorial</groupId>
     <artifactId>javaeetutorial</artifactId>
-    <version>8.0-SNAPSHOT</version>
+    <version>8.0</version>
     <packaging>pom</packaging>
     <name>Java EE Tutorial Examples</name>
     
     <scm>
         <connection>scm:git:https://github.com/javaee/tutorial-examples.git</connection>
         <developerConnection>scm:git:git@github.com:javaee/tutorial-examples.git</developerConnection>     
-    <tag>HEAD</tag>
+    <tag>8.0</tag>
   </scm>
     <issueManagement>
         <system>GitHub</system>
