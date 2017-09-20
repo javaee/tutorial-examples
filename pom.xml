@@ -1,27 +1,27 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                            http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>net.java</groupId>
-        <artifactId>jvnet-parent</artifactId>
-        <version>5</version>
-    </parent>
     <groupId>org.glassfish.javaeetutorial</groupId>
     <artifactId>javaeetutorial</artifactId>
-    <version>8.0-SNAPSHOT</version>
+    <version>7.0.6-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Java EE Tutorial Examples</name>
+    
     <scm>
         <connection>scm:git:https://github.com/javaee/tutorial-examples.git</connection>
-        <developerConnection>scm:git:git@github.com:javaee/tutorial-examples.git</developerConnection>     
-  </scm>
+        <developerConnection>scm:git:git@github.com:javaee/tutorial-examples.git</developerConnection>
+    </scm>
     <issueManagement>
         <system>GitHub</system>
         <url>https://github.com/javaee/tutorial-examples/issues</url>
     </issueManagement>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <javaee.api.version>8.0</javaee.api.version>
+        <javaee.api.version>7.0</javaee.api.version>
         <maven.compiler.plugin.version>3.1</maven.compiler.plugin.version>
         <maven.source.plugin.version>2.2.1</maven.source.plugin.version>
         <maven.clean.plugin.version>2.5</maven.clean.plugin.version>
@@ -32,7 +32,7 @@
         <maven.jar.plugin.version>2.4</maven.jar.plugin.version>
         <maven.rar.plugin.version>2.3</maven.rar.plugin.version>
         <maven.license.plugin.version>1.10.b1</maven.license.plugin.version>
-        <maven.release.plugin.version>2.5.2</maven.release.plugin.version>
+        <maven.release.plugin.version>2.4.1</maven.release.plugin.version>
         <maven.exec.plugin.version>1.2.1</maven.exec.plugin.version>
         <junit.version>4.11</junit.version>
         <eclipselink.version>2.5.0</eclipselink.version>
@@ -41,10 +41,6 @@
         <glassfish.domain.name>domain1</glassfish.domain.name>
         <glassfish.home>${glassfish.home.prefix}/glassfish5</glassfish.home>
         <integration.container.id>glassfish5x</integration.container.id>
-        <maven.deploy.skip>true</maven.deploy.skip>
-        <maven.javadoc.skip>true</maven.javadoc.skip>
-        <maven.source.skip>true</maven.source.skip>
-        <maven.source.attach>false</maven.source.attach>
     </properties>
     
     <profiles>
@@ -130,32 +126,7 @@
             <url>https://maven.java.net/content/repositories/releases/</url>
             <layout>default</layout>
         </repository>
-        <repository>
-            <id>jvnet-nexus-promoted</id>
-            <name>Java.net Promoted Repositories</name>
-            <url>https://maven.java.net/content/repositories/promoted/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
     </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>jvnet-nexus-promoted</id>
-            <name>Java.net Promoted Repositories</name>
-            <url>https://maven.java.net/content/repositories/promoted/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
-
     
     <build>
         <pluginManagement>
@@ -246,21 +217,14 @@
             </plugin>
             <plugin>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>${maven.release.plugin.version}</version>                
+                <version>${maven.release.plugin.version}</version>
                 <configuration>
-                    <mavenExecutorId>forked-path</mavenExecutorId>
-                    <useReleaseProfile>false</useReleaseProfile>                    
-                    <arguments>${release.arguments}</arguments>
+                    <!--
+                     During release:perform, enable the "sdk" profile
+                    -->
+                    <releaseProfiles>sdk</releaseProfiles>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
-                    <tagNameFormat>@{project.version}</tagNameFormat>
                 </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.apache.maven.scm</groupId>
-                        <artifactId>maven-scm-provider-gitexe</artifactId>
-                        <version>1.9.4</version>
-                    </dependency>
-                </dependencies>
             </plugin>
         </plugins>
     </build>
