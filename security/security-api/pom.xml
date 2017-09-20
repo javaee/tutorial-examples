@@ -11,6 +11,9 @@
     <groupId>org.glassfish.javaeetutorial</groupId>
     <artifactId>security-api</artifactId>
     <version>8.0-SNAPSHOT</version>
+=======
+    <version>7.0.6-SNAPSHOT</version>
+>>>>>>> 1f559d8b1e5aee5b26c1e452db32948e6a7758c4
     <packaging>pom</packaging>
     
     <name>security-api</name>
