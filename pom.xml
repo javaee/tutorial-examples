@@ -43,7 +43,7 @@
         <cargo.plugin.version>1.4.4</cargo.plugin.version>
         <glassfish.domain.name>domain1</glassfish.domain.name>
         <glassfish.home>${glassfish.home.prefix}/glassfish5</glassfish.home>
-        <integration.container.id>glassfish5x</integration.container.id>
+        <integration.container.id>glassfish4x</integration.container.id>
         <maven.deploy.skip>true</maven.deploy.skip>
         <maven.javadoc.skip>true</maven.javadoc.skip>
         <maven.source.skip>true</maven.source.skip>
