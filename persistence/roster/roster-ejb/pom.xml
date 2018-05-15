@@ -60,9 +60,11 @@
                         </goals>
                         <phase>generate-sources</phase>
                         <configuration>
+                            <options>
+                                <eclipselink.persistencexml>${basedir}/src/main/resources/META-INF/persistence.xml</eclipselink.persistencexml>
+                            </options>
                             <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
                             <outputDirectory>${project.build.directory}/generated-sources/metamodel</outputDirectory>
-                            <compilerArguments>-Aeclipselink.persistencexml=${basedir}/src/main/resources/META-INF/persistence.xml</compilerArguments>
                             <processors>
                                 <processor>org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor</processor>
                             </processors>
