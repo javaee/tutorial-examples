@@ -7,9 +7,11 @@
  */
 package javaeetutorial.trading.rar.api;
 
+import java.io.Serializable;
+import javax.resource.Referenceable;
 import javax.resource.ResourceException;
 
-public interface TradeConnectionFactory {
+public interface TradeConnectionFactory extends Serializable, Referenceable {
 
     /* Applications call this method, which delegates on the container's
      * connection manager to obtain a connection instance through

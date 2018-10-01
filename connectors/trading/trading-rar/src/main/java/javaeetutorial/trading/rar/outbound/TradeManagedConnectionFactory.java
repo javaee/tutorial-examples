@@ -10,15 +10,16 @@ package javaeetutorial.trading.rar.outbound;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.Set;
 import java.util.logging.Logger;
+import javaeetutorial.trading.rar.api.TradeConnection;
+import javaeetutorial.trading.rar.api.TradeConnectionFactory;
 
 import javax.naming.NamingException;
 import javax.naming.Reference;
 import javax.resource.Referenceable;
 import javax.resource.ResourceException;
-import javax.resource.cci.Connection;
-import javax.resource.cci.ConnectionFactory;
 import javax.resource.spi.ConfigProperty;
 import javax.resource.spi.ConnectionDefinition;
 import javax.resource.spi.ConnectionManager;
@@ -35,9 +36,9 @@ import javax.security.auth.Subject;
 
 /* Define classes an interfaces for the EIS physical connection */
 @ConnectionDefinition(
-    connectionFactory = ConnectionFactory.class,
+    connectionFactory = TradeConnectionFactory.class,
     connectionFactoryImpl = TradeConnectionFactoryImpl.class,
-    connection = Connection.class,
+    connection = TradeConnection.class,
     connectionImpl = TradeConnectionImpl.class
 )
 public class TradeManagedConnectionFactory implements ManagedConnectionFactory,
@@ -142,5 +143,39 @@ public class TradeManagedConnectionFactory implements ManagedConnectionFactory,
     public Reference getReference() throws NamingException {
         return reference;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.ra);
+        hash = 53 * hash + Objects.hashCode(this.reference);
+        hash = 53 * hash + Objects.hashCode(this.logWriter);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final TradeManagedConnectionFactory other = (TradeManagedConnectionFactory) obj;
+        if (!Objects.equals(this.ra, other.ra)) {
+            return false;
+        }
+        if (!Objects.equals(this.reference, other.reference)) {
+            return false;
+        }
+        if (!Objects.equals(this.logWriter, other.logWriter)) {
+            return false;
+        }
+        return true;
+    }
+    
     
 }

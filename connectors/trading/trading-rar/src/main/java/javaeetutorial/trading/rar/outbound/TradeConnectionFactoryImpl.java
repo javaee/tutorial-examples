@@ -10,6 +10,8 @@ package javaeetutorial.trading.rar.outbound;
 import java.util.logging.Logger;
 import javaeetutorial.trading.rar.api.TradeConnection;
 import javaeetutorial.trading.rar.api.TradeConnectionFactory;
+import javax.naming.NamingException;
+import javax.naming.Reference;
 import javax.resource.ResourceException;
 import javax.resource.spi.ConnectionManager;
 
@@ -19,7 +21,8 @@ public class TradeConnectionFactoryImpl implements TradeConnectionFactory {
 
     private static final Logger log = Logger.getLogger("TradeConnectionFactoryImpl");
     private ConnectionManager cmanager;
-    private TradeManagedConnectionFactory mcfactory;
+    private TradeManagedConnectionFactory mcfactory;    
+    private Reference reference;
     
     /* The container creates instances of this class 
      * through TradeManagedConnectionFactory.createConnectionFactory() */
@@ -37,4 +40,15 @@ public class TradeConnectionFactoryImpl implements TradeConnectionFactory {
         log.info("[TradeConnectionFactoryImpl] getConnection()");
         return (TradeConnection) cmanager.allocateConnection(mcfactory, null);
     }
+
+    @Override
+    public void setReference(Reference reference) {
+        this.reference = reference;
+    }
+
+    @Override
+    public Reference getReference() throws NamingException {
+        return this.reference;
+    }
+    
 }
